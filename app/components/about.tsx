@@ -42,7 +42,7 @@ const About = () => {
               <div className="mb-6">
                 <h4 className="text-xl font-semibold text-slate-800 dark:text-white mb-2">Southern Alberta Institute of Technology</h4>
                 <p className="text-slate-600 dark:text-slate-300 mb-1">Bachelor of Technology – Software Development</p>
-                <p className="text-slate-500 dark:text-slate-400 text-sm">2024 - 2027 (in progress)</p>
+                <p className="text-slate-500 dark:text-slate-400 text-sm">2023 - 2027 (in progress)</p>
               </div>
             </div>
           </motion.div>
