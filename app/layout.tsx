@@ -1,11 +1,16 @@
 import "./globals.css"
 import { Inter } from "next/font/google"
+import { ThemeProvider } from "./context/theme-provider"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  variable: "--font-inter"
+})
 
 export const metadata = {
   title: "Altesse Imena - Portfolio",
-  description: "Personal portfolio of Altesse Imena, a web developer",
+  description: "Personal portfolio of Altesse Imena, a software developer",
 }
 
 export default function RootLayout({
@@ -14,8 +19,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} font-sans`}>
-      <body className="bg-background text-primary">{children}</body>
+    <html lang="en" className={`${inter.variable} scroll-smooth`}>
+      <body className="font-sans antialiased">
+        <ThemeProvider defaultTheme="dark">
+          <div className="min-h-screen">
+            {children}
+          </div>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

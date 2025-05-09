@@ -2,29 +2,46 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { ThemeToggle } from "./theme-toggle"
 
 const Header = () => {
   return (
     <motion.header
-      className="py-6 px-4 sm:px-6 lg:px-8"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b dark:bg-slate-900/70 dark:border-slate-800/50 bg-white/70 border-slate-200/50"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <nav className="flex justify-between items-center">
-        <motion.div className="text-2xl font-bold" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-          AI
-        </motion.div>
-        <ul className="flex space-x-4">
-          {["About", "Projects", "Skills", "Contact"].map((item) => (
-            <motion.li key={item} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link href={`#${item.toLowerCase()}`} className="text-secondary hover:text-accent">
-                {item}
-              </Link>
-            </motion.li>
-          ))}
-        </ul>
-      </nav>
+      <div className="max-w-7xl mx-auto py-4 px-6 sm:px-8 lg:px-12">
+        <nav className="flex justify-between items-center">
+          <motion.div 
+            className="text-2xl font-bold" 
+            whileHover={{ scale: 1.05 }} 
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="stripe-gradient-text">AI</span>
+          </motion.div>
+          
+          <ul className="hidden md:flex items-center space-x-8">
+            {["About", "Projects", "Skills", "Contact"].map((item) => (
+              <motion.li 
+                key={item} 
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Link 
+                  href={`#${item.toLowerCase()}`} 
+                  className="text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white text-sm font-medium transition-colors duration-200"
+                >
+                  {item}
+                </Link>
+              </motion.li>
+            ))}
+          </ul>
+          
+          <ThemeToggle />
+        </nav>
+      </div>
     </motion.header>
   )
 }

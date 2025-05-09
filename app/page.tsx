@@ -1,12 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Header from "./components/Header"
-import Hero from "./components/Hero"
-import About from "./components/About"
-import Projects from "./components/Projects"
-import Skills from "./components/Skills"
-import Contact from "./components/Contact"
+import Header from "./components/header"
+import Hero from "./components/hero"
+import About from "./components/about"
+import Projects from "./components/projects"
+import Skills from "./components/skills"
+import Contact from "./components/contact"
 
 export default function Home() {
   return (
