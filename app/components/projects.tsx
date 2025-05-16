@@ -41,16 +41,17 @@ const projects = [
     id: 3, 
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-8.464a5 5 0 010 7.072M19.072 5.929a9 9 0 010 12.142M5.928 5.929a9 9 0 010 12.142" />
       </svg>
     ),
-    title: "Portfolio Website", 
-    description: "A responsive portfolio website using Next.js and Tailwind CSS to showcase my skills and projects.",
+    title: "Video Recognition App", 
+    description: "Developed an advanced application that uses ACRCloud's API and audio fingerprinting to identify media content from user clips.",
     details: [
-      "Designed and developed a modern, responsive portfolio website",
-      "Implemented smooth animations and transitions using Framer Motion",
-      "Utilized Next.js for server-side rendering and optimal performance",
-      "Styled with Tailwind CSS for a clean, consistent design"
+      "Engineered a sophisticated audio recognition system using ACRCloud's API for precise content identification",
+      "Implemented audio fingerprinting technology to match sounds from user clips to a vast database of media",
+      "Created a user-friendly interface that displays comprehensive metadata including source, author, and creation date",
+      "Optimized audio processing algorithms to ensure accurate recognition even with background noise or low-quality clips",
+      "Integrated caching mechanisms to improve performance and reduce API calls for frequently requested content"
     ]
   },
 ]
