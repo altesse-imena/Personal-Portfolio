@@ -77,19 +77,19 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Implemented data aggregation, filtering, and advanced screening features</span>
+                    <span>Implemented data aggregation, filtering, and advanced screening features to support real estate investment decisions</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Developed a user-friendly interface for efficient data analysis and visualization</span>
+                    <span>Led frontend development using React and designed a user-friendly interface for efficient data analysis and visualization</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Utilized Python and FastAPI for backend with React and JavaScript for frontend</span>
+                    <span>Managed data storage and retrieval with a PostgreSQL database, ensuring scalability and performance</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Managed data storage with PostgresSQL database</span>
+                    <span>Demonstrated proficiency in full-stack development, data integration, and enterprise-level application design</span>
                   </li>
                 </ul>
               </div>
