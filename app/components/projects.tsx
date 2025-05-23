@@ -58,51 +58,51 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-16 md:py-24 px-4 sm:px-6 relative">
+    <section id="projects" className="py-24 px-6 lg:px-8 relative">
       {/* Background gradient elements */}
       <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-indigo-500/5 to-transparent dark:from-indigo-500/10 -z-10" />
       
       <div className="max-w-7xl mx-auto">
         <motion.div
-          className="text-center mb-10 md:mb-16"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 dark:text-white text-slate-900">Projects</h2>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed dark:text-slate-400 text-slate-600">Some of my recent work</p>
+          <h2 className="stripe-heading">Projects</h2>
+          <p className="stripe-subheading">Some of my recent work</p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="stripe-card overflow-hidden group h-full flex flex-col"
+              className="stripe-card overflow-hidden group"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <div className="p-5 sm:p-6 pb-0 flex-1">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-                  <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg inline-flex">
+              <div className="p-6 pb-0">
+                <div className="flex items-center mb-4">
+                  <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg mr-4">
                     {project.icon}
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
                     {project.title}
                   </h3>
                 </div>
                 
-                <p className="text-slate-600 dark:text-slate-300 mb-6 text-sm sm:text-base">{project.description}</p>
+                <p className="text-slate-600 dark:text-slate-300 mb-6">{project.description}</p>
               </div>
               
-              <div className="bg-slate-100/50 dark:bg-slate-800/50 p-5 sm:p-6 border-t border-slate-200 dark:border-slate-700/50">
-                <h4 className="text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-3">Key Features</h4>
-                <ul className="space-y-2 text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+              <div className="bg-slate-100/50 dark:bg-slate-800/50 p-6 border-t border-slate-200 dark:border-slate-700/50">
+                <h4 className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-3">Key Features</h4>
+                <ul className="space-y-2 text-slate-600 dark:text-slate-400">
                   {project.details.map((detail, i) => (
                     <li key={i} className="flex items-start">
-                      <span className="text-indigo-600 dark:text-indigo-400 mr-2 flex-shrink-0 mt-1">•</span>
+                      <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
                       <span>{detail}</span>
                     </li>
                   ))}

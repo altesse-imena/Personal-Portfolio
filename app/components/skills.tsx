@@ -83,52 +83,52 @@ const skillCategories = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-16 md:py-24 px-4 sm:px-6 relative overflow-hidden">
-      {/* Background gradient elements - optimized for mobile */}
-      <div className="absolute top-0 right-0 w-2/3 md:w-1/2 h-1/2 bg-gradient-to-b from-purple-500/5 to-transparent -z-10" />
-      <div className="absolute bottom-0 left-0 w-1/2 md:w-1/3 h-1/3 bg-indigo-500/5 rounded-full blur-3xl -z-10" />
+    <section id="skills" className="stripe-section relative overflow-hidden">
+      {/* Background gradient elements */}
+      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-b from-purple-500/5 to-transparent -z-10" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-indigo-500/5 rounded-full blur-3xl -z-10" />
       
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
-          className="text-center mb-10 md:mb-16"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 dark:text-white text-slate-900">Technical Skills</h2>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed dark:text-slate-400 text-slate-600">Technologies and languages I work with</p>
+          <h2 className="stripe-heading">Technical Skills</h2>
+          <p className="stripe-subheading">Technologies and languages I work with</p>
         </motion.div>
         
-        <div className="grid gap-6 sm:gap-8 md:gap-12 md:grid-cols-2">
+        <div className="grid gap-12 md:grid-cols-2">
           {skillCategories.map((category, catIndex) => (
             <motion.div
               key={category.id}
-              className="stripe-card p-5 sm:p-6 md:p-8"
+              className="stripe-card p-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: catIndex * 0.1 }}
             >
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-                <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg inline-flex">
+              <div className="flex items-center mb-6">
+                <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg mr-4">
                   {category.icon}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white">{category.title}</h3>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white">{category.title}</h3>
               </div>
               
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, index) => (
                   <motion.div
                     key={`${category.id}-${index}`}
-                    className="bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 px-3 sm:px-4 py-2 sm:py-2 rounded-full hover:border-indigo-500/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 mb-1"
+                    className="bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 px-4 py-2 rounded-full hover:border-indigo-500/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: index * 0.05 + 0.2 }}
                     whileHover={{ y: -2 }}
                   >
-                    <span className="text-sm sm:text-base text-slate-700 dark:text-slate-300">{skill}</span>
+                    <span className="text-slate-700 dark:text-slate-300">{skill}</span>
                   </motion.div>
                 ))}
               </div>
@@ -138,7 +138,7 @@ const Skills = () => {
       </div>
       
       {/* Decorative element */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent dark:via-slate-700" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
     </section>
   )
 }

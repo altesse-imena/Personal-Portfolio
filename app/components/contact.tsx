@@ -21,15 +21,15 @@ const Contact = () => {
   return (
     <motion.section
       id="contact"
-      className="py-16 md:py-20 px-4"
+      className="py-20"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-md mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-6 md:mb-8 text-center">Contact Me</h2>
+        <h2 className="text-4xl font-bold mb-8 text-center">Contact Me</h2>
         
-        <p className="text-slate-600 dark:text-slate-300 mb-8 md:mb-10 text-base sm:text-lg">
+        <p className="text-slate-600 dark:text-slate-300 mb-10">
           Feel free to reach out to me via email. I'm always open to discussing new projects, 
           creative ideas, or opportunities to be part of your vision.
         </p>
@@ -45,17 +45,15 @@ const Contact = () => {
               window.location.href = `mailto:imenaaltesse@gmail.com`;
             }
           }}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer text-base"
+          className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          aria-label="Send email to Altesse Imena"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 24 24" 
             fill="currentColor" 
-            className="w-5 h-5 sm:w-6 sm:h-6"
-            aria-hidden="true"
+            className="w-6 h-6"
           >
             <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
             <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
@@ -63,23 +61,20 @@ const Contact = () => {
           Email Me
         </motion.a>
         
-        <div className="mt-6 md:mt-4 relative">
+        <div className="mt-4 relative">
           <button 
             onClick={copyToClipboard}
-            className="text-sm sm:text-base py-2 px-4 text-slate-500 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
-            aria-label="Copy email address to clipboard"
+            className="text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
           >
             Or click here to copy my email address
           </button>
           
           {copyStatus && (
             <motion.div 
-              className="absolute left-1/2 -translate-x-1/2 -bottom-10 bg-slate-800 text-white text-xs sm:text-sm px-4 py-2 rounded-md shadow-lg"
+              className="absolute left-1/2 -translate-x-1/2 -bottom-8 bg-slate-800 text-white text-xs px-3 py-1 rounded-md shadow-lg"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              role="status"
-              aria-live="polite"
             >
               {copyStatus}
             </motion.div>
