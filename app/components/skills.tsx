@@ -114,21 +114,21 @@ const Skills = () => {
                 <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg mr-4">
                   {category.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-white">{category.title}</h3>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white">{category.title}</h3>
               </div>
               
               <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, index) => (
                   <motion.div
                     key={`${category.id}-${index}`}
-                    className="bg-slate-800/80 border border-slate-700/50 px-4 py-2 rounded-full hover:border-indigo-500/50 hover:bg-slate-800 transition-all duration-300"
+                    className="bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 px-4 py-2 rounded-full hover:border-indigo-500/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: index * 0.05 + 0.2 }}
                     whileHover={{ y: -2 }}
                   >
-                    <span className="text-slate-300">{skill}</span>
+                    <span className="text-slate-700 dark:text-slate-300">{skill}</span>
                   </motion.div>
                 ))}
               </div>

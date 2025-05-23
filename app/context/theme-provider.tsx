@@ -35,15 +35,26 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement
     
+    // Add transition class before changing the theme
+    root.classList.add('theme-transition')
+    
+    // Remove previous theme classes
     root.classList.remove("light", "dark")
     
+    // Determine the theme to apply
     if (theme === "system") {
       const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
       root.classList.add(systemTheme)
-      return
+    } else {
+      root.classList.add(theme)
     }
     
-    root.classList.add(theme)
+    // Remove transition class after a delay to prevent transitions when page loads
+    const transitionTimeout = setTimeout(() => {
+      root.classList.remove('theme-transition')
+    }, 500)
+    
+    return () => clearTimeout(transitionTimeout)
   }, [theme])
 
   const value = {

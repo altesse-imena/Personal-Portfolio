@@ -1,16 +1,122 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useAnimation, Variants } from "framer-motion"
 import { LinkedinIcon, GithubIcon, ArrowRightIcon } from "lucide-react"
+import { useEffect } from "react"
+
+// Animated background blob variants
+const blobVariants: Variants = {
+  initial: (custom: number) => ({
+    scale: 0.8,
+    opacity: 0.5,
+    x: 0,
+    y: 0,
+  }),
+  animate: (custom: number) => ({
+    scale: [0.8, 1.1, 0.9],
+    opacity: [0.5, 0.7, 0.5],
+    x: [0, custom * 30, 0],
+    y: [0, custom * -20, 0],
+    transition: {
+      duration: 15 + custom * 5,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut",
+    },
+  }),
+}
+
+// Floating particles variants
+const particleVariants: Variants = {
+  initial: (custom: number) => ({
+    opacity: 0.2 + (custom * 0.3),
+    y: 0,
+    x: 0,
+    scale: 0.5 + (custom * 0.5),
+  }),
+  animate: (custom: number) => ({
+    opacity: [0.2 + (custom * 0.3), 0.5 + (custom * 0.3), 0.2 + (custom * 0.3)],
+    y: [0, custom * -30, 0],
+    x: [0, custom * 20, 0],
+    scale: [0.5 + (custom * 0.5), 0.7 + (custom * 0.5), 0.5 + (custom * 0.5)],
+    transition: {
+      duration: 10 + custom * 8,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut",
+    },
+  }),
+}
 
 const Hero = () => {
   return (
     <section id="hero" className="relative overflow-hidden pt-32 pb-24 px-4 min-h-screen flex items-center">
-      {/* Background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-b from-indigo-500/5 to-transparent dark:from-indigo-500/10" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-t from-purple-500/5 to-transparent dark:from-purple-500/10" />
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl dark:bg-indigo-500/10" />
+      {/* Animated background elements */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        {/* Main gradient backgrounds */}
+        <motion.div 
+          className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-b from-indigo-500/5 to-transparent dark:from-indigo-500/10"
+          initial={{ opacity: 0.5, scale: 0.9 }}
+          animate={{ 
+            opacity: [0.5, 0.7, 0.5],
+            scale: [0.9, 1.05, 0.9],
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity, 
+            repeatType: "reverse", 
+            ease: "easeInOut" 
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-t from-purple-500/5 to-transparent dark:from-purple-500/10"
+          initial={{ opacity: 0.5, scale: 0.9 }}
+          animate={{ 
+            opacity: [0.5, 0.7, 0.5],
+            scale: [0.9, 1.1, 0.9],
+          }}
+          transition={{ 
+            duration: 15, 
+            repeat: Infinity, 
+            repeatType: "reverse", 
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+        
+        {/* Animated blobs */}
+        <motion.div 
+          className="absolute top-1/4 left-1/4 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl dark:bg-indigo-500/10"
+          variants={blobVariants}
+          initial="initial"
+          animate="animate"
+          custom={1}
+        />
+        <motion.div 
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl dark:bg-purple-500/10"
+          variants={blobVariants}
+          initial="initial"
+          animate="animate"
+          custom={-0.7}
+        />
+        
+        {/* Floating particles */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div 
+            key={i}
+            className="absolute rounded-full bg-gradient-to-r from-indigo-500/20 to-purple-500/20 dark:from-indigo-500/30 dark:to-purple-500/30"
+            style={{
+              width: 4 + i * 3,
+              height: 4 + i * 3,
+              left: `${15 + i * 10}%`,
+              top: `${10 + (i % 5) * 15}%`,
+            }}
+            variants={particleVariants}
+            initial="initial"
+            animate="animate"
+            custom={i * 0.1}
+          />
+        ))}
       </div>
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
