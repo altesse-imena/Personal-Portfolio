@@ -8,6 +8,34 @@ const projects = [
     id: 1, 
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      </svg>
+    ),
+    title: "AstroTrip: Interactive Space Exploration Web Application", 
+    description: "Developed a responsive React application that delivers personalized space exploration experiences through interactive features including NASA astronomy picture integration, ISS tracking, and virtual planet trips.",
+    image: "/images/Astrotrip Home Page.png",
+    images: [
+      "/images/Astrotrip Home Page.png",
+      "/images/Birthday.png",
+      "/images/Planet Trip.png"
+    ],
+    bgColor: "from-blue-600 to-purple-600",
+    category: "Web",
+    technologies: ["React", "NASA APIs", "Leaflet", "Axios", "Tailwind CSS"],
+    demoUrl: "https://astrotrip.netlify.app/",
+    githubUrl: "https://github.com/altesse-imena/AstroTrip",
+    details: [
+      "Implemented RESTful API integration with NASA's APOD API and ISS location services using Axios, enabling real-time data retrieval and display of astronomical imagery and space station positioning",
+      "Engineered an interactive ISS tracking system using Leaflet maps that displays real-time International Space Station location, calculates flyover times, and performs reverse geocoding",
+      "Created a personalized 'Birthdate in Space' feature that retrieves and displays NASA's Astronomy Picture of the Day from a user's birth date",
+      "Built a modern, responsive UI inspired by SpaceX design principles using custom CSS and Tailwind, featuring dark mode, animated space backgrounds, and mobile-friendly layouts",
+      "Implemented secure API key management using environment variables and deployed a production-ready application using Netlify CI/CD pipeline"
+    ]
+  },
+  { 
+    id: 2, 
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -29,7 +57,7 @@ const projects = [
     ]
   },
   { 
-    id: 2, 
+    id: 3, 
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-8.464a5 5 0 010 7.072M19.072 5.929a9 9 0 010 12.142M5.928 5.929a9 9 0 010 12.142" />
@@ -56,30 +84,6 @@ const projects = [
       "Utilized AVFoundation, Core ML, and Vision for content analysis and metadata retrieval",
       "Integrated with a custom backend API for real-time processing",
       "Optimized for background efficiency and performance"
-    ]
-  },
-  { 
-    id: 3, 
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    ),
-    title: "Events Management System", 
-    description: "Developed a cross-platform application to manage event listings with CRUD functionality efficiently.",
-    image: "/images/events-app.jpg",
-    images: ["/images/events-app.jpg"],
-    bgColor: "from-purple-500 to-pink-500",
-    category: "Desktop",
-    technologies: ["C#", "MAUI", "SQL Server"],
-    demoUrl: "#",
-    githubUrl: "#",
-    details: [
-      "Designed and implemented a user-friendly interface for listing, editing, and deleting event details",
-      "Built the application using the MAUI framework in C#, ensuring cross-platform compatibility",
-      "Integrated a robust database for seamless storage, retrieval, and management of event data",
-      "Focused on scalability and performance to support efficient event tracking",
-      "Demonstrated expertise in C#, database integration, and UI/UX design for desktop applications"
     ]
   },
 ]
@@ -179,13 +183,21 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent z-10" />
                 <div className="w-full h-full bg-slate-200 dark:bg-slate-700 relative overflow-hidden">
                   {/* Project Image or Fallback */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.bgColor} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-700 ease-in-out`}>
-                    <div className="bg-white/10 backdrop-blur-sm p-5 rounded-full">
-                      <div className="text-white w-10 h-10 flex items-center justify-center">
-                        {project.icon}
+                  {project.image ? (
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                    />
+                  ) : (
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.bgColor} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-700 ease-in-out`}>
+                      <div className="bg-white/10 backdrop-blur-sm p-5 rounded-full">
+                        <div className="text-white w-10 h-10 flex items-center justify-center">
+                          {project.icon}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
                   <div className="flex items-center gap-2 mb-2">

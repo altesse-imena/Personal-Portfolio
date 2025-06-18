@@ -52,7 +52,7 @@
   }
   
   body {
-    @apply bg-slate-900 text-slate-100 antialiased dark:bg-slate-900 dark:text-slate-100 bg-slate-50 text-slate-900;
+    @apply antialiased bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100;
   }
   
   .dark body {

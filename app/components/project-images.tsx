@@ -87,11 +87,11 @@ const ProjectImageGenerator = () => {
           color2: '#7C3AED'
         },
         {
-          id: 'events-app',
-          icon: '📅',
-          title: 'Events App',
-          color1: '#6366F1',
-          color2: '#9333EA'
+          id: 'astrotrip',
+          icon: '🚀',
+          title: 'AstroTrip',
+          color1: '#2563EB',
+          color2: '#7C3AED'
         }
       ]
 
