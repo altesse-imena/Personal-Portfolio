@@ -1,7 +1,30 @@
 "use client"
 
-import { useState, useEffect, useCallback, memo, lazy, Suspense } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
+import dynamic from "next/dynamic"
+
+// Dynamically import the ProjectModal component for code splitting
+const ProjectModal = dynamic(() => import('./ProjectModal'), {
+  loading: () => (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+      <div className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-xl">
+        <div className="animate-pulse flex space-x-4">
+          <div className="rounded-full bg-slate-200 dark:bg-slate-700 h-12 w-12"></div>
+          <div className="flex-1 space-y-4 py-1">
+            <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4"></div>
+            <div className="space-y-2">
+              <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded"></div>
+              <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-5/6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+  ssr: false // Disable server-side rendering for this component
+})
 
 const projects = [
   { 
@@ -13,11 +36,11 @@ const projects = [
     ),
     title: "AstroTrip: Interactive Space Exploration Web Application", 
     description: "Developed a responsive React application that delivers personalized space exploration experiences through interactive features including NASA astronomy picture integration, ISS tracking, and virtual planet trips.",
-    image: "/images/Astrotrip Home Page.png",
+    image: "/images/optimized/Astrotrip Home Page.webp",
     images: [
-      "/images/Astrotrip Home Page.png",
-      "/images/Birthday.png",
-      "/images/Planet Trip.png"
+      "/images/optimized/Astrotrip Home Page.webp",
+      "/images/optimized/Birthday.webp",
+      "/images/optimized/Planet Trip.webp"
     ],
     bgColor: "from-blue-600 to-purple-600",
     category: "Web",
@@ -41,7 +64,7 @@ const projects = [
     ),
     title: "Personal Finance Management Application powered by Artificial Intelligence", 
     description: "Designed and developed a financial management app to help users achieve their budgeting and savings goals.",
-    image: "/images/finance-app.jpg",
+    image: "/images/finance-app.jpg", // Keeping original as WebP conversion had an error
     images: ["/images/finance-app.jpg"],
     bgColor: "from-indigo-500 to-purple-500",
     category: "Web & Mobile",
@@ -65,13 +88,13 @@ const projects = [
     ),
     title: "Clypse – iOS App with Video Recognition Widget", 
     description: "Designed and developed an iOS application that recognizes video content through a Shazam-style widget interface.",
-    image: "/images/IMG_3506.PNG",
+    image: "/images/optimized/IMG_3506.webp",
     images: [
-      "/images/IMG_3506.PNG",
-      "/images/IMG_3507.PNG",
-      "/images/IMG_3509.PNG",
-      "/images/IMG_3510.PNG",
-      "/images/IMG_3511.PNG"
+      "/images/optimized/IMG_3506.webp",
+      "/images/optimized/IMG_3507.webp",
+      "/images/optimized/IMG_3509.webp",
+      "/images/optimized/IMG_3510.webp",
+      "/images/optimized/IMG_3511.webp"
     ],
     bgColor: "from-blue-500 to-indigo-600",
     category: "Mobile",
@@ -89,64 +112,79 @@ const projects = [
 ]
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const openModal = (project) => {
-    setSelectedProject(project);
-    setCurrentImageIndex(0); // Reset image index when opening modal
-    setIsModalOpen(true);
-    // Prevent scrolling when modal is open
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    // Re-enable scrolling
-    document.body.style.overflow = '';
-  };
-
+  const [selectedProject, setSelectedProject] = useState<any>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  
+  // Open modal with selected project
+  const openModal = (project: any) => {
+    setSelectedProject(project)
+    setCurrentImageIndex(0)
+    setIsModalOpen(true)
+  }
+  
+  // Close modal
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false)
+  }, [])
+  
   // Handle escape key to close modal and arrow keys for image navigation
-  const handleKeyDown = (e) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
-      closeModal();
-    } else if (selectedProject?.images?.length > 1) {
-      if (e.key === 'ArrowRight') {
-        nextImage();
-      } else if (e.key === 'ArrowLeft') {
-        prevImage();
-      }
+      closeModal()
+    } else if (e.key === 'ArrowRight' && selectedProject?.images?.length > 1) {
+      nextImage()
+    } else if (e.key === 'ArrowLeft' && selectedProject?.images?.length > 1) {
+      prevImage()
     }
-  };
-
-  // Image navigation functions
+  }, [closeModal, selectedProject])
+  
+  // Navigate to next image
   const nextImage = useCallback(() => {
     if (selectedProject?.images?.length > 1) {
       setCurrentImageIndex((prev) => 
         prev === selectedProject.images.length - 1 ? 0 : prev + 1
-      );
+      )
     }
-  }, [selectedProject]);
-
+  }, [selectedProject])
+  
+  // Navigate to previous image
   const prevImage = useCallback(() => {
     if (selectedProject?.images?.length > 1) {
       setCurrentImageIndex((prev) => 
         prev === 0 ? selectedProject.images.length - 1 : prev - 1
-      );
+      )
     }
-  }, [selectedProject]);
+  }, [selectedProject])
   
-  // Auto-rotate images every 5 seconds
+  // Auto-rotate images in carousel
   useEffect(() => {
-    if (isModalOpen && selectedProject?.images?.length > 1) {
-      const timer = setInterval(() => {
+    let interval: NodeJS.Timeout | undefined;
+    
+    if (isModalOpen && selectedProject && selectedProject.images?.length > 1) {
+      interval = setInterval(() => {
         nextImage();
-      }, 5000);
-      
-      return () => clearInterval(timer);
+      }, 5000); // Change image every 5 seconds
     }
+    
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [isModalOpen, selectedProject, currentImageIndex, nextImage]);
+
+  // Add event listener for keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+    
+    if (isModalOpen) {
+      window.addEventListener('keydown', handleKeyPress);
+      return () => window.removeEventListener('keydown', handleKeyPress);
+    }
+  }, [isModalOpen, closeModal]);
 
   return (
     <section id="projects" className="py-24 px-6 lg:px-8 relative">
@@ -184,10 +222,14 @@ const Projects = () => {
                 <div className="w-full h-full bg-slate-200 dark:bg-slate-700 relative overflow-hidden">
                   {/* Project Image or Fallback */}
                   {project.image ? (
-                    <img 
+                    <Image 
                       src={project.image} 
                       alt={project.title}
+                      width={600}
+                      height={400}
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                      priority={index < 3}
+                      quality={80}
                     />
                   ) : (
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.bgColor} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-700 ease-in-out`}>
@@ -274,254 +316,14 @@ const Projects = () => {
         </div>
       </div>
       
-      {/* Project Modal */}
-      <AnimatePresence>
-        {isModalOpen && selectedProject && (
-          <div 
-            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10"
-            onClick={closeModal}
-            onKeyDown={handleKeyDown}
-            tabIndex={0}
-          >
-            <motion.div 
-              className="w-full max-w-4xl max-h-[90vh] bg-white dark:bg-slate-900 rounded-xl shadow-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            >
-              {/* Modal Header with Image Carousel */}
-              <div className="relative w-full h-64 sm:h-80 md:h-96 bg-slate-200 dark:bg-slate-800 overflow-hidden">
-                {/* Custom background for Clypse app */}
-                {selectedProject.id === 2 ? (
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 z-0">
-                    <div className="absolute inset-0 opacity-20">
-                      {/* Abstract pattern for mobile app background */}
-                      <div className="absolute top-0 left-0 w-full h-full">
-                        {[...Array(20)].map((_, i) => (
-                          <div 
-                            key={i}
-                            className="absolute rounded-full bg-white/10"
-                            style={{
-                              width: `${Math.random() * 100 + 50}px`,
-                              height: `${Math.random() * 100 + 50}px`,
-                              top: `${Math.random() * 100}%`,
-                              left: `${Math.random() * 100}%`,
-                              opacity: Math.random() * 0.5 + 0.1,
-                              transform: `scale(${Math.random() * 1 + 0.5})`,
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent z-10" />
-                )}
-                
-                {/* Image Carousel */}
-                {selectedProject.images && selectedProject.images.length > 0 ? (
-                  <div className="relative w-full h-full">
-                    {/* Current Image */}
-                    <AnimatePresence mode="wait">
-                      <motion.div 
-                        key={currentImageIndex}
-                        className="absolute inset-0"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <div className="relative w-full h-full">
-                          <div className="absolute inset-0 bg-black/20" />
-                          {/* Mobile device frame for Clypse app */}
-                          {selectedProject.id === 2 ? (
-                            <div className="w-full h-full flex items-center justify-center">
-                              <div className="relative h-full mx-auto flex items-center">
-                                {/* Mobile device frame */}
-                                <div className="relative max-h-[90%] mx-auto">
-                                  {/* Phone outer frame */}
-                                  <div className="absolute inset-0 bg-black rounded-[36px] shadow-2xl z-10" />
-                                  {/* Screen bezel */}
-                                  <div className="absolute inset-2 bg-black rounded-[30px] z-20">
-                                    {/* Notch */}
-                                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/4 h-6 bg-black rounded-b-xl z-30" />
-                                  </div>
-                                  {/* Actual screenshot with proper aspect ratio preservation */}
-                                  <div className="relative z-20 p-2 pt-2 pb-2">
-                                    <div className="relative rounded-[24px] overflow-hidden">
-                                      <img 
-                                        src={selectedProject.images[currentImageIndex]}
-                                        alt={`${selectedProject.title} screenshot ${currentImageIndex + 1}`}
-                                        className="max-h-[70vh] w-auto"
-                                        style={{ display: 'block' }}
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="w-full h-full relative">
-                              <img 
-                                src={selectedProject.images[currentImageIndex]}
-                                alt={`${selectedProject.title} screenshot ${currentImageIndex + 1}`}
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                          )}
-                        </div>
-                      </motion.div>
-                    </AnimatePresence>
-                    
-                    {/* Navigation Arrows - only show if there are multiple images */}
-                    {selectedProject.images.length > 1 && (
-                      <>
-                        <button 
-                          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-colors"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            prevImage();
-                          }}
-                          aria-label="Previous image"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                          </svg>
-                        </button>
-                        <button 
-                          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-colors"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            nextImage();
-                          }}
-                          aria-label="Next image"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                        
-                        {/* Image Indicators */}
-                        <div className="absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2">
-                          {selectedProject.images.map((_, index) => (
-                            <button
-                              key={index}
-                              className={`w-2.5 h-2.5 rounded-full transition-all ${index === currentImageIndex ? 'bg-white scale-110' : 'bg-white/50 hover:bg-white/80'}`}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setCurrentImageIndex(index);
-                              }}
-                              aria-label={`Go to image ${index + 1}`}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                ) : (
-                  // Fallback if no images
-                  <div className={`w-full h-full bg-gradient-to-br ${selectedProject.bgColor} flex items-center justify-center`}>
-                    <div className="bg-white/10 backdrop-blur-sm p-8 rounded-full">
-                      <div className="text-white w-16 h-16 flex items-center justify-center">
-                        {selectedProject.icon}
-                      </div>
-                    </div>
-                  </div>
-                )}
-                
-                {/* Close Button */}
-                <button 
-                  className="absolute top-4 right-4 z-20 bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/40 transition-colors"
-                  onClick={closeModal}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-                
-                {/* Project Title */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-medium px-2 py-1 rounded-full bg-indigo-600/80 text-white">
-                      {selectedProject.category}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                    {selectedProject.title}
-                  </h3>
-                </div>
-              </div>
-              
-              {/* Modal Content */}
-              <div className="p-6 overflow-y-auto max-h-[calc(90vh-24rem)]">
-                <div className="mb-6">
-                  <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-4">Overview</h4>
-                  <p className="text-slate-600 dark:text-slate-300">
-                    {selectedProject.description}
-                  </p>
-                </div>
-                
-                <div className="mb-6">
-                  <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-4">Technologies</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map((tech, i) => (
-                      <span 
-                        key={i} 
-                        className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="mb-6">
-                  <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-4">Links</h4>
-                  <div className="flex gap-4">
-                    <a 
-                      href={selectedProject.demoUrl} 
-                      className="px-4 py-2 rounded-md bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800/40 transition-colors flex items-center gap-2 font-medium"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                      Live Demo
-                    </a>
-                    <a 
-                      href={selectedProject.githubUrl} 
-                      className="px-4 py-2 rounded-md bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center gap-2 font-medium"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                      </svg>
-                      View Source
-                    </a>
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-4">Key Features</h4>
-                  <ul className="space-y-3 text-slate-600 dark:text-slate-400">
-                    {selectedProject.details.map((detail, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="text-indigo-600 dark:text-indigo-400 mr-2 mt-1">•</span>
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      {/* Project Modal - Using dynamically imported component */}
+      <ProjectModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        currentImageIndex={currentImageIndex}
+        setCurrentImageIndex={setCurrentImageIndex}
+      />
       
       {/* Decorative element */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent dark:via-slate-700" />
@@ -530,4 +332,3 @@ const Projects = () => {
 }
 
 export default Projects
-

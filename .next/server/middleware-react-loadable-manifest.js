@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"app/components/projects.tsx -> ./ProjectModal\":{\"id\":\"app/components/projects.tsx -> ./ProjectModal\",\"files\":[\"static/chunks/_app-pages-browser_app_components_ProjectModal_tsx.js\"]}}"
