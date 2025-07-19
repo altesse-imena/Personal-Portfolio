@@ -51,64 +51,10 @@ const projects = [
       "Implemented RESTful API integration with NASA's APOD API and ISS location services using Axios, enabling real-time data retrieval and display of astronomical imagery and space station positioning",
       "Engineered an interactive ISS tracking system using Leaflet maps that displays real-time International Space Station location, calculates flyover times, and performs reverse geocoding",
       "Created a personalized 'Birthdate in Space' feature that retrieves and displays NASA's Astronomy Picture of the Day from a user's birth date",
-      "Built a modern, responsive UI inspired by SpaceX design principles using custom CSS and Tailwind, featuring dark mode, animated space backgrounds, and mobile-friendly layouts",
-      "Implemented secure API key management using environment variables and deployed a production-ready application using Netlify CI/CD pipeline"
+      "Developed a virtual planet exploration feature that allows users to learn about planets through interactive 3D models and educational content",
+      "Implemented secure API key management using environment variables to protect sensitive credentials while maintaining functionality"
     ]
-  },
-  { 
-    id: 2, 
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    title: "Personal Finance Management Application powered by Artificial Intelligence", 
-    description: "Designed and developed a financial management app to help users achieve their budgeting and savings goals.",
-    image: "/images/finance-app.jpg", // Keeping original as WebP conversion had an error
-    images: ["/images/finance-app.jpg"],
-    bgColor: "from-indigo-500 to-purple-500",
-    category: "Web & Mobile",
-    technologies: ["Python", "React", "TensorFlow", "PostgreSQL"],
-    demoUrl: "#",
-    githubUrl: "#",
-    details: [
-      "Built an AI-powered chatbot to provide personalized financial advice based on user inputs",
-      "Implemented features to track income, expenses, and savings while dynamically generating actionable insights",
-      "Designed an intuitive user interface focused on ease of use and accessibility for all financial literacy levels",
-      "Ensured robust data handling for accurate analysis and secure storage of user financial information",
-      "Utilized Python for backend development and AI integration, focusing on automation and data privacy"
-    ]
-  },
-  { 
-    id: 3, 
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 9.64a3 3 0 010 4.72m-3.536-8.464a5 5 0 010 7.072M19.072 5.929a9 9 0 010 12.142M5.928 5.929a9 9 0 010 12.142" />
-      </svg>
-    ),
-    title: "Clypse – iOS App with Video Recognition Widget", 
-    description: "Designed and developed an iOS application that recognizes video content through a Shazam-style widget interface.",
-    image: "/images/optimized/IMG_3506.webp",
-    images: [
-      "/images/optimized/IMG_3506.webp",
-      "/images/optimized/IMG_3507.webp",
-      "/images/optimized/IMG_3509.webp",
-      "/images/optimized/IMG_3510.webp",
-      "/images/optimized/IMG_3511.webp"
-    ],
-    bgColor: "from-blue-500 to-indigo-600",
-    category: "Mobile",
-    technologies: ["Swift", "SwiftUI", "Core ML", "Vision"],
-    demoUrl: "#",
-    githubUrl: "#",
-    details: [
-      "Designed a fast, user-friendly interface with Swift and SwiftUI",
-      "Built an iOS widget for instant video recognition",
-      "Utilized AVFoundation, Core ML, and Vision for content analysis and metadata retrieval",
-      "Integrated with a custom backend API for real-time processing",
-      "Optimized for background efficiency and performance"
-    ]
-  },
+  }
 ]
 
 const Projects = () => {
@@ -203,21 +149,21 @@ const Projects = () => {
           <p className="stripe-subheading">Some of my recent work</p>
         </motion.div>
         
-        {/* Masonry Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-auto">
+        {/* Centered Project Layout */}
+        <div className="flex justify-center items-center w-full">
           {projects.map((project, index) => (
             <motion.div
-              key={project.id}
-              className="stripe-card overflow-hidden group cursor-pointer transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              onClick={() => openModal(project)}
-              style={{ gridRow: `span ${index === 0 ? 2 : 1}` }}
+            key={project.id}
+            className="stripe-card overflow-hidden group cursor-pointer transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 w-full max-w-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            onClick={() => openModal(project)}
+            style={{ gridRow: `span ${index === 0 ? 2 : 1}` }}
             >
               {/* Project Image */}
-              <div className="relative w-full h-64 overflow-hidden group-hover:shadow-lg transition-all duration-300">
+              <div className="relative w-full h-80 overflow-hidden group-hover:shadow-lg transition-all duration-300">
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent z-10" />
                 <div className="w-full h-full bg-slate-200 dark:bg-slate-700 relative overflow-hidden">
                   {/* Project Image or Fallback */}
@@ -228,8 +174,10 @@ const Projects = () => {
                       width={600}
                       height={400}
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                      priority={index < 3}
-                      quality={80}
+                      priority={index === 0}
+                      quality={75}
+                      loading="eager"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   ) : (
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.bgColor} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-700 ease-in-out`}>

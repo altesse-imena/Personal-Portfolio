@@ -66,30 +66,30 @@ const About = () => {
             <div className="pl-4 border-l border-indigo-500/30">
               <div>
                 <h4 className="text-xl font-semibold text-slate-800 dark:text-white mb-2">Avenue Living Residential</h4>
-                <p className="text-slate-600 dark:text-slate-300 mb-1">Calgary, AB</p>
+                <p className="text-slate-600 dark:text-slate-300 mb-1">Calgary, AB | Software Engineering Intern</p>
                 <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">September 2024 – April 2025</p>
-                <p className="text-slate-600 dark:text-slate-300 mb-4">Worked with a multidisciplinary team to design and develop an application for analyzing and consolidating real estate data.</p>
+                <p className="text-slate-600 dark:text-slate-300 mb-4">Worked with a multidisciplinary team to develop an application for analyzing and consolidating real estate data.</p>
                 
                 <ul className="space-y-2 text-slate-500 dark:text-slate-400">
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Integrated data from various sources (CoStar Group, Yardi Matrix, Zillow) to provide comprehensive market insights</span>
+                    <span>Developed a full-stack real estate data platform in a multidisciplinary team</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Implemented data aggregation, filtering, and advanced screening features to support real estate investment decisions</span>
+                    <span>Built scalable FastAPI and PostgreSQL backends for real-time querying across 1,000+ listings</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Led frontend development using React and designed a user-friendly interface for efficient data analysis and visualization</span>
+                    <span>Integrated external data sources (Zillow, CoStar) and engineered smart filtering tools for investment insights</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Managed data storage and retrieval with a PostgreSQL database, ensuring scalability and performance</span>
+                    <span>Led front-end development in React, improving data analysis efficiency by 50%</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Demonstrated proficiency in full-stack development, data integration, and enterprise-level application design</span>
+                    <span>Gained production-level experience in API design, real-time systems, and cross-functional development</span>
                   </li>
                 </ul>
               </div>

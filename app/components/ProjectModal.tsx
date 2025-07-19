@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useMemo } from "react";
 
 interface ProjectModalProps {
   project: any;
@@ -10,8 +11,8 @@ interface ProjectModalProps {
   setCurrentImageIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ProjectModal = ({ project, isOpen, onClose, currentImageIndex, setCurrentImageIndex }: ProjectModalProps) => {
-  // Image navigation functions
+const ProjectModal = memo(({ project, isOpen, onClose, currentImageIndex, setCurrentImageIndex }: ProjectModalProps) => {
+  // Image navigation functions - memoized to prevent unnecessary re-renders
   const nextImage = useCallback(() => {
     if (project?.images?.length > 1) {
       setCurrentImageIndex((prev) => {
@@ -30,16 +31,16 @@ const ProjectModal = ({ project, isOpen, onClose, currentImageIndex, setCurrentI
     }
   }, [project, setCurrentImageIndex]);
   
-  // Auto-rotate images every 5 seconds
+  // Use a longer interval to reduce CPU usage
   useEffect(() => {
     if (isOpen && project?.images?.length > 1) {
       const timer = setInterval(() => {
         nextImage();
-      }, 5000);
+      }, 8000); // Increased from 5000ms to 8000ms to reduce CPU usage
       
       return () => clearInterval(timer);
     }
-  }, [isOpen, project, currentImageIndex, nextImage]);
+  }, [isOpen, project, nextImage]); // Removed currentImageIndex dependency to prevent unnecessary effect runs
 
   // Handle escape key to close modal and arrow keys for image navigation
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -138,7 +139,11 @@ const ProjectModal = ({ project, isOpen, onClose, currentImageIndex, setCurrentI
                                       height={800}
                                       className="max-h-[70vh] w-auto"
                                       style={{ display: 'block' }}
-                                      quality={85}
+                                      quality={75}
+                                      loading="lazy"
+                                      sizes="(max-width: 768px) 100vw, 400px"
+                                      placeholder="blur"
+                                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjgwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMzMzIi8+PC9zdmc+"
                                     />
                                   </div>
                                 </div>
@@ -153,7 +158,11 @@ const ProjectModal = ({ project, isOpen, onClose, currentImageIndex, setCurrentI
                               width={1200}
                               height={800}
                               className="w-full h-full object-cover"
-                              quality={85}
+                              quality={75}
+                              loading="lazy"
+                              sizes="(max-width: 768px) 100vw, 1200px"
+                              placeholder="blur"
+                              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIGZpbGw9IiMzMzMiLz48L3N2Zz4="
                             />
                           </div>
                         )}
@@ -311,6 +320,6 @@ const ProjectModal = ({ project, isOpen, onClose, currentImageIndex, setCurrentI
       )}
     </AnimatePresence>
   );
-};
+});
 
 export default ProjectModal;
