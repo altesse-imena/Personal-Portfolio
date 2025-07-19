@@ -109,10 +109,12 @@ const ProjectImageGenerator = () => {
         )
 
         // Create a link to download the image
-        const link = document.createElement('a')
-        link.href = dataUrl
-        link.download = `${project.id}.jpg`
-        link.click()
+        if (dataUrl) {
+          const link = document.createElement('a')
+          link.href = dataUrl
+          link.download = `${project.id}.jpg`
+          link.click()
+        }
       }
 
       document.body.removeChild(canvas)
