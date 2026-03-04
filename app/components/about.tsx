@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const About = () => {
   return (
@@ -19,6 +20,47 @@ const About = () => {
         >
           <h2 className="stripe-heading">About Me</h2>
           <p className="stripe-subheading">My education and professional experience</p>
+        </motion.div>
+
+        {/* Profile section with headshot */}
+        <motion.div
+          className="flex flex-col lg:flex-row items-start gap-12 mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Headshot */}
+          <div className="flex-shrink-0 lg:mt-1">
+            <div className="relative">
+              <div className="w-40 h-40 md:w-44 md:h-44 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-indigo-500/20 dark:ring-indigo-400/20">
+                <Image
+                  src="/images/my-headshot.jpeg"
+                  alt="Altesse Imena - Professional Headshot"
+                  width={224}
+                  height={224}
+                  className="w-full h-full object-cover"
+                  priority
+                  quality={90}
+                />
+              </div>
+              {/* Decorative gradient behind headshot */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-3xl blur-xl -z-10" />
+            </div>
+          </div>
+
+          {/* Introduction text */}
+          <div className="flex-1 text-center lg:text-left">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+              I'm a passionate software developer currently pursuing my Bachelor of Technology in Software Development at SAIT. 
+              With hands-on experience in full-stack development and a love for creating innovative solutions, 
+              I'm dedicated to building applications that make a meaningful impact.
+            </p>
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, 
+              or working on creative solutions to complex problems. I believe in the power of technology to transform ideas into reality.
+            </p>
+          </div>
         </motion.div>
         
         <div className="grid gap-12 lg:gap-16 md:grid-cols-2">

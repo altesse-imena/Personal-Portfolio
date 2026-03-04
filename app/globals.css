@@ -55,17 +55,6 @@
     @apply antialiased bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100;
   }
   
-  .dark body {
-    background-image: radial-gradient(circle at 25% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                     radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
-    background-attachment: fixed;
-  }
-  
-  .light body {
-    background-image: radial-gradient(circle at 25% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
-                     radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
-    background-attachment: fixed;
-  }
 }
 
 @layer components {
