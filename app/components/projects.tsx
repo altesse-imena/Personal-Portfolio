@@ -36,12 +36,8 @@ const projects = [
     ),
     title: "AstroTrip: Interactive Space Exploration Web Application", 
     description: "Developed a responsive React application that delivers personalized space exploration experiences through interactive features including NASA astronomy picture integration, ISS tracking, and virtual planet trips.",
-    image: "/images/optimized/Astrotrip Home Page.webp",
-    images: [
-      "/images/optimized/Astrotrip Home Page.webp",
-      "/images/optimized/Birthday.webp",
-      "/images/optimized/Planet Trip.webp"
-    ],
+    image: null,
+    images: [],
     bgColor: "from-blue-600 to-purple-600",
     category: "Web",
     technologies: ["React", "NASA APIs", "Leaflet", "Axios", "Tailwind CSS"],
@@ -309,13 +305,11 @@ const projects = [
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null)
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   
   // Open modal with selected project
   const openModal = (project: any) => {
     setSelectedProject(project)
-    setCurrentImageIndex(0)
     setIsModalOpen(true)
   }
   
@@ -324,50 +318,6 @@ const Projects = () => {
     setIsModalOpen(false)
   }, [])
   
-  // Handle escape key to close modal and arrow keys for image navigation
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      closeModal()
-    } else if (e.key === 'ArrowRight' && selectedProject?.images?.length > 1) {
-      nextImage()
-    } else if (e.key === 'ArrowLeft' && selectedProject?.images?.length > 1) {
-      prevImage()
-    }
-  }, [closeModal, selectedProject])
-  
-  // Navigate to next image
-  const nextImage = useCallback(() => {
-    if (selectedProject?.images?.length > 1) {
-      setCurrentImageIndex((prev) => 
-        prev === selectedProject.images.length - 1 ? 0 : prev + 1
-      )
-    }
-  }, [selectedProject])
-  
-  // Navigate to previous image
-  const prevImage = useCallback(() => {
-    if (selectedProject?.images?.length > 1) {
-      setCurrentImageIndex((prev) => 
-        prev === 0 ? selectedProject.images.length - 1 : prev - 1
-      )
-    }
-  }, [selectedProject])
-  
-  // Auto-rotate images in carousel
-  useEffect(() => {
-    let interval: NodeJS.Timeout | undefined;
-    
-    if (isModalOpen && selectedProject && selectedProject.images?.length > 1) {
-      interval = setInterval(() => {
-        nextImage();
-      }, 5000); // Change image every 5 seconds
-    }
-    
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [isModalOpen, selectedProject, currentImageIndex, nextImage]);
-
   // Add event listener for keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -511,8 +461,6 @@ const Projects = () => {
         project={selectedProject}
         isOpen={isModalOpen}
         onClose={closeModal}
-        currentImageIndex={currentImageIndex}
-        setCurrentImageIndex={setCurrentImageIndex}
       />
       
       {/* Decorative element */}

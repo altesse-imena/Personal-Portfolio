@@ -1,59 +1,13 @@
-import { useEffect, useCallback, memo } from "react";
+import { memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { useMemo } from "react";
 
 interface ProjectModalProps {
   project: any;
   isOpen: boolean;
   onClose: () => void;
-  currentImageIndex: number;
-  setCurrentImageIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ProjectModal = memo(({ project, isOpen, onClose, currentImageIndex, setCurrentImageIndex }: ProjectModalProps) => {
-  // Image navigation functions - memoized to prevent unnecessary re-renders
-  const nextImage = useCallback(() => {
-    if (project?.images?.length > 1) {
-      setCurrentImageIndex((prev) => {
-        const newIndex = prev === project.images.length - 1 ? 0 : prev + 1;
-        return newIndex;
-      });
-    }
-  }, [project, setCurrentImageIndex]);
-
-  const prevImage = useCallback(() => {
-    if (project?.images?.length > 1) {
-      setCurrentImageIndex((prev) => {
-        const newIndex = prev === 0 ? project.images.length - 1 : prev - 1;
-        return newIndex;
-      });
-    }
-  }, [project, setCurrentImageIndex]);
-  
-  // Use a longer interval to reduce CPU usage
-  useEffect(() => {
-    if (isOpen && project?.images?.length > 1) {
-      const timer = setInterval(() => {
-        nextImage();
-      }, 8000); // Increased from 5000ms to 8000ms to reduce CPU usage
-      
-      return () => clearInterval(timer);
-    }
-  }, [isOpen, project, nextImage]); // Removed currentImageIndex dependency to prevent unnecessary effect runs
-
-  // Handle escape key to close modal and arrow keys for image navigation
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      onClose();
-    } else if (project?.images?.length > 1) {
-      if (e.key === 'ArrowRight') {
-        nextImage();
-      } else if (e.key === 'ArrowLeft') {
-        prevImage();
-      }
-    }
-  };
+const ProjectModal = memo(({ project, isOpen, onClose }: ProjectModalProps) => {
 
   return (
     <AnimatePresence>
@@ -61,7 +15,6 @@ const ProjectModal = memo(({ project, isOpen, onClose, currentImageIndex, setCur
         <div 
           className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10"
           onClick={onClose}
-          onKeyDown={handleKeyDown as any}
           tabIndex={0}
         >
           <motion.div 
@@ -72,159 +25,23 @@ const ProjectModal = memo(({ project, isOpen, onClose, currentImageIndex, setCur
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           >
-            {/* Modal Header with Image Carousel */}
+            {/* Modal Header with Project Icon */}
             <div className="relative w-full h-64 sm:h-80 md:h-96 bg-slate-200 dark:bg-slate-800 overflow-hidden">
-              {/* Custom background for Clypse app */}
-              {project.id === 2 ? (
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 z-0">
-                  <div className="absolute inset-0 opacity-20">
-                    {/* Abstract pattern for mobile app background */}
-                    <div className="absolute top-0 left-0 w-full h-full">
-                      {[...Array(20)].map((_, i) => (
-                        <div 
-                          key={i}
-                          className="absolute rounded-full bg-white/10"
-                          style={{
-                            width: `${Math.random() * 100 + 50}px`,
-                            height: `${Math.random() * 100 + 50}px`,
-                            top: `${Math.random() * 100}%`,
-                            left: `${Math.random() * 100}%`,
-                            opacity: Math.random() * 0.5 + 0.1,
-                            transform: `scale(${Math.random() * 1 + 0.5})`,
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
+              {/* Project Icon Display */}
+              <div className={`w-full h-full bg-gradient-to-br ${project.bgColor} flex items-center justify-center relative overflow-hidden`}>
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
                 </div>
-              ) : (
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent z-10" />
-              )}
-              
-              {/* Image Carousel */}
-              {project.images && project.images.length > 0 ? (
-                <div className="relative w-full h-full">
-                  {/* Current Image */}
-                  <AnimatePresence mode="wait">
-                    <motion.div 
-                      key={currentImageIndex}
-                      className="absolute inset-0"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <div className="relative w-full h-full">
-                        <div className="absolute inset-0 bg-black/20" />
-                        {/* Mobile device frame for Clypse app */}
-                        {project.id === 2 ? (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <div className="relative h-full mx-auto flex items-center">
-                              {/* Mobile device frame */}
-                              <div className="relative max-h-[90%] mx-auto">
-                                {/* Phone outer frame */}
-                                <div className="absolute inset-0 bg-black rounded-[36px] shadow-2xl z-10" />
-                                {/* Screen bezel */}
-                                <div className="absolute inset-2 bg-black rounded-[30px] z-20">
-                                  {/* Notch */}
-                                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/4 h-6 bg-black rounded-b-xl z-30" />
-                                </div>
-                                {/* Actual screenshot with proper aspect ratio preservation */}
-                                <div className="relative z-20 p-2 pt-2 pb-2">
-                                  <div className="relative rounded-[24px] overflow-hidden">
-                                    <Image 
-                                      src={project.images[currentImageIndex]}
-                                      alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                                      width={400}
-                                      height={800}
-                                      className="max-h-[70vh] w-auto"
-                                      style={{ display: 'block' }}
-                                      quality={75}
-                                      loading="lazy"
-                                      sizes="(max-width: 768px) 100vw, 400px"
-                                      placeholder="blur"
-                                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjgwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMzMzIi8+PC9zdmc+"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="w-full h-full relative">
-                            <Image 
-                              src={project.images[currentImageIndex]}
-                              alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                              width={1200}
-                              height={800}
-                              className="w-full h-full object-cover"
-                              quality={75}
-                              loading="lazy"
-                              sizes="(max-width: 768px) 100vw, 1200px"
-                              placeholder="blur"
-                              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIGZpbGw9IiMzMzMiLz48L3N2Zz4="
-                            />
-                          </div>
-                        )}
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                  
-                  {/* Navigation Arrows - only show if there are multiple images */}
-                  {project.images.length > 1 && (
-                    <>
-                      <button 
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-colors"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          prevImage();
-                        }}
-                        aria-label="Previous image"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                      </button>
-                      <button 
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-colors"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          nextImage();
-                        }}
-                        aria-label="Next image"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
-                      
-                      {/* Image Indicators */}
-                      <div className="absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2">
-                        {project.images.map((_: any, index: number) => (
-                          <button
-                            key={index}
-                            className={`w-2.5 h-2.5 rounded-full transition-all ${index === currentImageIndex ? 'bg-white scale-110' : 'bg-white/50 hover:bg-white/80'}`}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setCurrentImageIndex(index);
-                            }}
-                            aria-label={`Go to image ${index + 1}`}
-                          />
-                        ))}
-                      </div>
-                    </>
-                  )}
+                {/* Main Icon */}
+                <div className="text-white/90 scale-[4] z-10">
+                  {project.icon}
                 </div>
-              ) : (
-                // Fallback if no images
-                <div className={`w-full h-full bg-gradient-to-br ${project.bgColor} flex items-center justify-center`}>
-                  <div className="bg-white/10 backdrop-blur-sm p-8 rounded-full">
-                    <div className="text-white w-16 h-16 flex items-center justify-center">
-                      {project.icon}
-                    </div>
-                  </div>
+                {/* Category Badge */}
+                <div className="absolute bottom-4 right-4 bg-black/20 backdrop-blur-sm rounded-full px-3 py-1">
+                  <span className="text-white/80 text-xs font-medium">{project.category}</span>
                 </div>
-              )}
+              </div>
               
               {/* Close Button */}
               <button 
