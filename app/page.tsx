@@ -14,8 +14,8 @@ export default function Home() {
       <Header />
       <main className="container mx-auto">
         <Hero />
-        <About />
         <Projects />
+        <About />
         <Skills />
         <Contact />
       </main>
