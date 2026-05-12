@@ -20,6 +20,16 @@ eval("// Exports\nmodule.exports = {\n\t\"style\": {\"fontFamily\":\"'__Inter_f3
 
 /***/ }),
 
+/***/ "(rsc)/./node_modules/next/font/google/target.css?{\"path\":\"app/layout.tsx\",\"import\":\"Jost\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\",\"variable\":\"--font-jost\",\"preload\":true,\"fallback\":[\"system-ui\",\"sans-serif\"]}],\"variableName\":\"jost\"}":
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/font/google/target.css?{"path":"app/layout.tsx","import":"Jost","arguments":[{"subsets":["latin"],"display":"swap","variable":"--font-jost","preload":true,"fallback":["system-ui","sans-serif"]}],"variableName":"jost"} ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+eval("// Exports\nmodule.exports = {\n\t\"style\": {\"fontFamily\":\"'__Jost_4635eb', '__Jost_Fallback_4635eb', system-ui, sans-serif\",\"fontStyle\":\"normal\"},\n\t\"className\": \"__className_4635eb\",\n\t\"variable\": \"__variable_4635eb\"\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9ub2RlX21vZHVsZXMvbmV4dC9mb250L2dvb2dsZS90YXJnZXQuY3NzP3tcInBhdGhcIjpcImFwcC9sYXlvdXQudHN4XCIsXCJpbXBvcnRcIjpcIkpvc3RcIixcImFyZ3VtZW50c1wiOlt7XCJzdWJzZXRzXCI6W1wibGF0aW5cIl0sXCJkaXNwbGF5XCI6XCJzd2FwXCIsXCJ2YXJpYWJsZVwiOlwiLS1mb250LWpvc3RcIixcInByZWxvYWRcIjp0cnVlLFwiZmFsbGJhY2tcIjpbXCJzeXN0ZW0tdWlcIixcInNhbnMtc2VyaWZcIl19XSxcInZhcmlhYmxlTmFtZVwiOlwiam9zdFwifSIsIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0EsV0FBVyxxR0FBcUc7QUFDaEg7QUFDQTtBQUNBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vcGVyc29uYWwtcG9ydGZvbGlvLy4vbm9kZV9tb2R1bGVzL25leHQvZm9udC9nb29nbGUvdGFyZ2V0LmNzcz84ZjZjIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIEV4cG9ydHNcbm1vZHVsZS5leHBvcnRzID0ge1xuXHRcInN0eWxlXCI6IHtcImZvbnRGYW1pbHlcIjpcIidfX0pvc3RfNDYzNWViJywgJ19fSm9zdF9GYWxsYmFja180NjM1ZWInLCBzeXN0ZW0tdWksIHNhbnMtc2VyaWZcIixcImZvbnRTdHlsZVwiOlwibm9ybWFsXCJ9LFxuXHRcImNsYXNzTmFtZVwiOiBcIl9fY2xhc3NOYW1lXzQ2MzVlYlwiLFxuXHRcInZhcmlhYmxlXCI6IFwiX192YXJpYWJsZV80NjM1ZWJcIlxufTtcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(rsc)/./node_modules/next/font/google/target.css?{\"path\":\"app/layout.tsx\",\"import\":\"Jost\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\",\"variable\":\"--font-jost\",\"preload\":true,\"fallback\":[\"system-ui\",\"sans-serif\"]}],\"variableName\":\"jost\"}\n");
+
+/***/ }),
+
 /***/ "(ssr)/./node_modules/next/dist/api/app-dynamic.js":
 /*!***************************************************!*\
   !*** ./node_modules/next/dist/api/app-dynamic.js ***!

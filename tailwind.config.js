@@ -42,7 +42,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+        jost: ['var(--font-jost)', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
       },
       animation: {
         'gradient-x': 'gradient-x 10s ease infinite',
