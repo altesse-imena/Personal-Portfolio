@@ -78,7 +78,32 @@ const About = () => {
               <h3 className="text-2xl text-slate-800 dark:text-white">Experience</h3>
             </div>
             
-            <div className="pl-4 border-l border-indigo-500/30">
+            <div className="pl-4 border-l border-indigo-500/30 space-y-8">
+              <div>
+                <h4 className="text-xl text-slate-800 dark:text-white mb-2">Founder & Engineer — Pulse</h4>
+                <p className="text-slate-600 dark:text-slate-300 mb-1">An AI-powered desktop assistant startup aiming to reinvent the OS interface through natural language interaction</p>
+                <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">2024 – Present</p>
+                
+                <ul className="space-y-2 text-slate-500 dark:text-slate-400">
+                  <li className="flex items-start">
+                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span>Built a cross-platform desktop app using Electron and Node.js with a streaming LLM interface powered by OpenAI and Anthropic APIs</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span>Engineered native OS integrations including command execution, app launching, and file management via a conversational UI</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span>Implemented Supabase Auth for user management and a Vercel-hosted backend with real-time response streaming</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span>Designed screenshot and voice input pipelines for multimodal interaction across macOS and Windows</span>
+                  </li>
+                </ul>
+              </div>
+
               <div>
                 <h4 className="text-xl text-slate-800 dark:text-white mb-2">Avenue Living Residential</h4>
                 <p className="text-slate-600 dark:text-slate-300 mb-1">Calgary, AB | Software Engineering Intern</p>
@@ -88,23 +113,15 @@ const About = () => {
                 <ul className="space-y-2 text-slate-500 dark:text-slate-400">
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Developed a full-stack real estate data platform in a multidisciplinary team</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
                     <span>Built scalable FastAPI and PostgreSQL backends for real-time querying across 1,000+ listings</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Integrated external data sources (Zillow, CoStar) and engineered smart filtering tools for investment insights</span>
+                    <span>Integrated external data sources (Zillow, CoStar) and engineered filtering tools for investment insights</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
                     <span>Led front-end development in React, improving data analysis efficiency by 50%</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
-                    <span>Gained production-level experience in API design, real-time systems, and cross-functional development</span>
                   </li>
                 </ul>
               </div>
