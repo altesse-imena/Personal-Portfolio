@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { LinkedinIcon, GithubIcon, ArrowRightIcon } from "lucide-react"
+import { LinkedinIcon, GithubIcon, ArrowRightIcon, DownloadIcon } from "lucide-react"
 import AnimatedCodeBackground from "./animated-code-background"
 
 
@@ -27,9 +27,20 @@ const Hero = () => {
               <span className="stripe-gradient-text">Altesse Imena</span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl font-medium mb-6 text-slate-700 dark:text-slate-300">
-              Software Engineer
-            </h2>
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-6">
+              <h2 className="text-xl md:text-2xl font-medium text-slate-700 dark:text-slate-300">
+                Software Engineer
+              </h2>
+              <a 
+                href="/resume.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm group"
+              >
+                <DownloadIcon className="w-4 h-4" />
+                Resume
+              </a>
+            </div>
             
             <p className="stripe-subheading mb-8 md:max-w-2xl md:mx-0">
               Passionate about creating innovative solutions and building impactful applications.
