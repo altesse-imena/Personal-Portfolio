@@ -1,11 +1,21 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import { useState } from "react"
 import { ThemeToggle } from "./theme-toggle"
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = ["About", "Projects", "Skills", "Contact"];
+  
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
   
   return (
     <motion.header
@@ -24,8 +34,8 @@ const Header = () => {
             <span className="stripe-gradient-text">AI</span>
           </motion.div>
           
-          {/* Navigation */}
-          <div className="flex items-center">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center">
             <ul className="flex items-center space-x-8 mr-4">
               {navItems.map((item) => (
                 <motion.li 
@@ -45,7 +55,80 @@ const Header = () => {
             
             <ThemeToggle />
           </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden flex items-center space-x-4">
+            <ThemeToggle />
+            
+            {/* Hamburger Menu Button */}
+            <motion.button
+              onClick={toggleMenu}
+              className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              whileTap={{ scale: 0.95 }}
+              aria-label="Toggle menu"
+            >
+              <div className="w-6 h-6 flex flex-col justify-center items-center">
+                <motion.span
+                  className="w-6 h-0.5 bg-slate-700 dark:bg-slate-300 rounded-full"
+                  animate={{
+                    rotate: isMenuOpen ? 45 : 0,
+                    y: isMenuOpen ? 6 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.span
+                  className="w-6 h-0.5 bg-slate-700 dark:bg-slate-300 rounded-full mt-1.5"
+                  animate={{
+                    opacity: isMenuOpen ? 0 : 1,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.span
+                  className="w-6 h-0.5 bg-slate-700 dark:bg-slate-300 rounded-full mt-1.5"
+                  animate={{
+                    rotate: isMenuOpen ? -45 : 0,
+                    y: isMenuOpen ? -6 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+            </motion.button>
+          </div>
         </nav>
+
+        {/* Mobile Menu Dropdown */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="py-4 border-t border-slate-200 dark:border-slate-700 mt-4">
+                <ul className="space-y-4">
+                  {navItems.map((item, index) => (
+                    <motion.li
+                      key={item}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <Link
+                        href={`#${item.toLowerCase()}`}
+                        onClick={closeMenu}
+                        className="block py-2 px-4 text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white font-medium transition-colors duration-200 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg"
+                      >
+                        {item}
+                      </Link>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   )
