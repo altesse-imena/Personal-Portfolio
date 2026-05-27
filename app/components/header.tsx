@@ -35,7 +35,7 @@ const Header = () => {
           </motion.div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex lg:flex items-center">
             <ul className="flex items-center space-x-8 mr-4">
               {navItems.map((item) => (
                 <motion.li 
@@ -57,7 +57,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center space-x-4">
+          <div className="flex md:hidden lg:hidden items-center space-x-4">
             <ThemeToggle />
             
             {/* Hamburger Menu Button */}
