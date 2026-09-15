@@ -36,15 +36,6 @@ const Contact = () => {
         
         <motion.a
           href="mailto:imenaaltesse@gmail.com?subject=Portfolio%20Contact&body=Hello%20Altesse,%0A%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you%20about..."
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => {
-            // Fallback for mailto links not working
-            if (!window.open(`mailto:imenaaltesse@gmail.com`, '_blank')) {
-              // If window.open fails, try location.href
-              window.location.href = `mailto:imenaaltesse@gmail.com`;
-            }
-          }}
           className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
