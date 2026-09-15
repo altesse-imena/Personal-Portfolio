@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST='{"app/components/projects.tsx -> ./ProjectModal":{"id":2181,"files":["static/chunks/181.577cb688fbb34b86.js"]}}';
