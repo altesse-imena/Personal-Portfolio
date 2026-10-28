@@ -48,7 +48,8 @@ const About = () => {
           </div>
         </div>
         
-        <div className="grid gap-12 lg:gap-16 md:grid-cols-2">
+        {/* Stacked so each card is only as tall as its content */}
+        <div className="flex flex-col gap-8 md:gap-12">
           <div className="stripe-card p-8">
             <div className="flex items-start mb-6">
               <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg mr-4">
@@ -60,7 +61,7 @@ const About = () => {
             </div>
             
             <div className="pl-4 border-l border-indigo-500/30">
-              <div className="mb-6">
+              <div>
                 <h4 className="text-xl text-slate-800 dark:text-white mb-2">Southern Alberta Institute of Technology</h4>
                 <p className="text-slate-600 dark:text-slate-300 mb-1">Bachelor of Technology – Software Development</p>
                 <p className="text-slate-500 dark:text-slate-400 text-sm">2023 - 2027 (in progress)</p>
