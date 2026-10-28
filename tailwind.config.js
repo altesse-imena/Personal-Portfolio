@@ -49,8 +49,13 @@ module.exports = {
         'gradient-x': 'gradient-x 10s ease infinite',
         'gradient-y': 'gradient-y 10s ease infinite',
         'gradient-xy': 'gradient-xy 10s ease infinite',
+        'fade-up': 'fade-up 0.35s ease-out both',
       },
       keyframes: {
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
         'gradient-x': {
           '0%, 100%': {
             'background-position': '0% 50%',

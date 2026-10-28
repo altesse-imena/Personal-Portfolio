@@ -303,10 +303,25 @@ const projects = [
   }
 ]
 
+// On phones, only this many projects show until the list is expanded
+const MOBILE_PREVIEW_COUNT = 4
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  
+  const [isExpanded, setIsExpanded] = useState<boolean>(false)
+
+  const toggleExpanded = () => {
+    if (isExpanded) {
+      // Collapsing removes most of the list, so bring the section back into view
+      const section = document.getElementById('projects')
+      if (section && section.getBoundingClientRect().top < 0) {
+        section.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+    setIsExpanded(!isExpanded)
+  }
+
   // Open modal with selected project
   const openModal = (project: any) => {
     setSelectedProject(project)
@@ -338,21 +353,25 @@ const Projects = () => {
       <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-indigo-500/5 to-transparent dark:from-indigo-500/10 -z-10" />
       
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <h2 className="stripe-heading">Projects</h2>
           <p className="stripe-subheading">Some of my recent work</p>
         </div>
-        
-        {/* Projects Grid Layout */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
+
+        {/* Projects Grid Layout: compact 2 columns on phones */}
+        <div id="projects-grid" className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-8 lg:grid-cols-3">
+          {projects.map((project, index) => {
+            const isCollapsedOnMobile = !isExpanded && index >= MOBILE_PREVIEW_COUNT
+            return (
             <div
             key={project.id}
-            className="stripe-card overflow-hidden group cursor-pointer transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            className={`stripe-card overflow-hidden group cursor-pointer transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col ${
+              isCollapsedOnMobile ? 'hidden md:flex' : ''
+            } ${isExpanded && index >= MOBILE_PREVIEW_COUNT ? 'max-md:animate-fade-up' : ''}`}
             onClick={() => openModal(project)}
             >
               {/* Project Image */}
-              <div className="relative w-full h-80 overflow-hidden group-hover:shadow-lg transition-all duration-300">
+              <div className="relative w-full h-32 sm:h-44 md:h-80 overflow-hidden group-hover:shadow-lg transition-all duration-300">
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent z-10" />
                 <div className="w-full h-full bg-slate-200 dark:bg-slate-700 relative overflow-hidden">
                   {/* Project Image or Fallback */}
@@ -362,7 +381,7 @@ const Projects = () => {
                       alt={project.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 1200px) 50vw, 33vw"
                     />
                   ) : (
                     <div className={`w-full h-full bg-gradient-to-br ${project.bgColor} flex items-center justify-center relative overflow-hidden`}>
@@ -371,30 +390,48 @@ const Projects = () => {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
                       </div>
                       {/* Main Icon */}
-                      <div className="text-white/90 scale-[2.5] z-10">
+                      <div className="text-white/90 scale-[1.6] -translate-y-4 md:translate-y-0 md:scale-[2.5] z-10">
                         {project.icon}
                       </div>
                       {/* Category Badge */}
-                      <div className="absolute bottom-4 right-4 bg-black/20 backdrop-blur-sm rounded-full px-3 py-1">
+                      <div className="hidden md:block absolute bottom-4 right-4 bg-black/20 backdrop-blur-sm rounded-full px-3 py-1">
                         <span className="text-white/80 text-xs font-medium">{project.category}</span>
                       </div>
                     </div>
                   )}
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-medium px-2 py-1 rounded-full bg-indigo-600/80 text-white">
+                <div className="absolute bottom-0 left-0 right-0 p-2.5 md:p-4 z-20">
+                  <div className="flex items-center gap-2 mb-1 md:mb-2">
+                    <span className="text-[10px] md:text-xs font-medium px-1.5 py-0.5 md:px-2 md:py-1 rounded-full bg-indigo-600/80 text-white">
                       {project.category}
                     </span>
                   </div>
-                  <h3 className="text-xl text-white group-hover:text-indigo-300 transition-colors line-clamp-2">
-                    {project.title}
+                  <h3 className="text-sm leading-snug md:text-xl md:leading-normal text-white group-hover:text-indigo-300 transition-colors line-clamp-2">
+                    {/* Phones show the short name only, e.g. "AstroTrip" */}
+                    <span className="md:hidden">{project.title.split(':')[0]}</span>
+                    <span className="hidden md:inline">{project.title}</span>
                   </h3>
                 </div>
               </div>
-              
+
+              {/* Compact footer on phones: full info lives in the details modal */}
+              <div className="md:hidden p-2.5 mt-auto">
+                <button
+                  className="w-full text-xs font-medium px-3 py-1.5 rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600 transition-colors flex items-center justify-center gap-1 shadow-sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openModal(project);
+                  }}
+                >
+                  Details
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
               {/* Project Brief */}
-              <div className="p-6">
+              <div className="hidden md:block p-6">
                 <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-2">
                   {project.description}
                 </p>
@@ -452,8 +489,33 @@ const Projects = () => {
                 </div>
               </div>
             </div>
-          ))}
+            )
+          })}
         </div>
+
+        {/* Expand / collapse toggle (phones only; larger screens always show every project) */}
+        {projects.length > MOBILE_PREVIEW_COUNT && (
+          <div className="mt-6 flex justify-center md:hidden">
+            <button
+              type="button"
+              onClick={toggleExpanded}
+              aria-expanded={isExpanded}
+              aria-controls="projects-grid"
+              className="stripe-button-outline text-sm py-2.5 text-slate-700 dark:text-slate-300"
+            >
+              {isExpanded ? 'Show less' : `Show all ${projects.length} projects`}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-4 w-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
       
       {/* Project Modal - Using dynamically imported component */}
