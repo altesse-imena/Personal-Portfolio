@@ -1,6 +1,44 @@
 "use client"
 
 import Image from "next/image"
+import { useId, useState, type ReactNode } from "react"
+
+// Card whose body collapses behind its header on phones; always open from md up
+const CollapsibleCard = ({ title, icon, children }: { title: string; icon: ReactNode; children: ReactNode }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const contentId = useId()
+
+  return (
+    <div className="stripe-card p-6 md:p-8">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls={contentId}
+        className={`w-full flex items-center md:items-start text-left md:pointer-events-none ${isOpen ? 'mb-6' : 'mb-0'} md:mb-6`}
+      >
+        <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg mr-4">
+          {icon}
+        </div>
+        <h3 className="text-2xl text-slate-800 dark:text-white flex-1">{title}</h3>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={`md:hidden h-5 w-5 text-slate-500 dark:text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <div id={contentId} className={`${isOpen ? 'block max-md:animate-fade-up' : 'hidden'} md:block`}>
+        {children}
+      </div>
+    </div>
+  )
+}
 
 const About = () => {
   return (
@@ -50,16 +88,14 @@ const About = () => {
         
         {/* Stacked so each card is only as tall as its content */}
         <div className="flex flex-col gap-8 md:gap-12">
-          <div className="stripe-card p-8">
-            <div className="flex items-start mb-6">
-              <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <h3 className="text-2xl text-slate-800 dark:text-white">Education</h3>
-            </div>
-            
+          <CollapsibleCard
+            title="Education"
+            icon={
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            }
+          >
             <div className="pl-4 border-l border-indigo-500/30">
               <div>
                 <h4 className="text-xl text-slate-800 dark:text-white mb-2">Southern Alberta Institute of Technology</h4>
@@ -67,18 +103,16 @@ const About = () => {
                 <p className="text-slate-500 dark:text-slate-400 text-sm">2023 - 2027 (in progress)</p>
               </div>
             </div>
-          </div>
-          
-          <div className="stripe-card p-8">
-            <div className="flex items-start mb-6">
-              <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl text-slate-800 dark:text-white">Experience</h3>
-            </div>
-            
+          </CollapsibleCard>
+
+          <CollapsibleCard
+            title="Experience"
+            icon={
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            }
+          >
             <div className="pl-4 border-l border-indigo-500/30 space-y-8">
               <div>
                 <h4 className="text-xl text-slate-800 dark:text-white mb-2">Founder & Engineer — Pulse</h4>
@@ -127,7 +161,7 @@ const About = () => {
                 </ul>
               </div>
             </div>
-          </div>
+          </CollapsibleCard>
         </div>
       </div>
       
