@@ -350,7 +350,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-24 px-6 lg:px-8 relative">
       {/* Background gradient elements */}
-      <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-indigo-500/5 to-transparent dark:from-indigo-500/10 -z-10" />
+      <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-ultramarine-500/5 to-transparent dark:from-ultramarine-500/10 -z-10" />
       
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10 md:mb-16">
@@ -402,11 +402,11 @@ const Projects = () => {
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-2.5 md:p-4 z-20">
                   <div className="flex items-center gap-2 mb-1 md:mb-2">
-                    <span className="text-[10px] md:text-xs font-medium px-1.5 py-0.5 md:px-2 md:py-1 rounded-full bg-indigo-600/80 text-white">
+                    <span className="text-[10px] md:text-xs font-medium px-1.5 py-0.5 md:px-2 md:py-1 rounded-full bg-ultramarine-600/80 text-white">
                       {project.category}
                     </span>
                   </div>
-                  <h3 className="text-sm leading-snug md:text-xl md:leading-normal text-white group-hover:text-indigo-300 transition-colors line-clamp-2">
+                  <h3 className="text-sm leading-snug md:text-xl md:leading-normal text-white group-hover:text-ultramarine-300 transition-colors line-clamp-2">
                     {/* Phones show the short name only, e.g. "AstroTrip" */}
                     <span className="md:hidden">{project.title.split(':')[0]}</span>
                     <span className="hidden md:inline">{project.title}</span>
@@ -417,7 +417,7 @@ const Projects = () => {
               {/* Compact footer on phones: full info lives in the details modal */}
               <div className="md:hidden p-2.5 mt-auto">
                 <button
-                  className="w-full text-xs font-medium px-3 py-1.5 rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600 transition-colors flex items-center justify-center gap-1 shadow-sm"
+                  className="w-full text-xs font-medium px-3 py-1.5 rounded-md bg-gradient-to-r from-ultramarine-500 to-ultramarine-700 text-white hover:from-ultramarine-600 hover:to-ultramarine-800 transition-colors flex items-center justify-center gap-1 shadow-sm"
                   onClick={(e) => {
                     e.stopPropagation();
                     openModal(project);
@@ -453,7 +453,7 @@ const Projects = () => {
                   <div className="flex space-x-2">
                     <a 
                       href={project.demoUrl} 
-                      className="text-xs font-medium px-3 py-1.5 rounded-md bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800/40 transition-colors flex items-center gap-1"
+                      className="text-xs font-medium px-3 py-1.5 rounded-md bg-ultramarine-100 text-ultramarine-700 dark:bg-ultramarine-900/30 dark:text-ultramarine-300 hover:bg-ultramarine-200 dark:hover:bg-ultramarine-800/40 transition-colors flex items-center gap-1"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -475,7 +475,7 @@ const Projects = () => {
                   </div>
                   
                   <button 
-                    className="text-xs font-medium px-3 py-1.5 rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600 transition-colors flex items-center gap-1 shadow-sm"
+                    className="text-xs font-medium px-3 py-1.5 rounded-md bg-gradient-to-r from-ultramarine-500 to-ultramarine-700 text-white hover:from-ultramarine-600 hover:to-ultramarine-800 transition-colors flex items-center gap-1 shadow-sm"
                     onClick={(e) => {
                       e.stopPropagation();
                       openModal(project);

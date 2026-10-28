@@ -3,11 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-  --gradient-secondary: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
-  --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  /* Ultramarine gradients; dark mode uses lighter stops so text stays readable */
+  --gradient-primary: linear-gradient(135deg, #4166f5 0%, #2548e4 50%, #1c38c4 100%);
+  --gradient-secondary: linear-gradient(135deg, #0ea5e9 0%, #4166f5 100%);
+  --gradient-accent: linear-gradient(135deg, #4166f5 0%, #1c38c4 100%);
   --gradient-dark: linear-gradient(135deg, #111827 0%, #1f2937 100%);
-  --gradient-subtle: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(236, 72, 153, 0.1) 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(65, 102, 245, 0.1) 0%, rgba(28, 56, 196, 0.1) 100%);
+}
+
+.dark {
+  --gradient-primary: linear-gradient(135deg, #8fa4fa 0%, #6985f7 50%, #4166f5 100%);
+  --gradient-accent: linear-gradient(135deg, #8fa4fa 0%, #4166f5 100%);
 }
 
 @layer base {
@@ -18,17 +24,17 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 243 75% 59%;
+    --primary: 228 90% 61%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-    --accent: 262 83% 58%;
+    --accent: 230 75% 44%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 243 75% 59%;
+    --ring: 228 90% 61%;
   }
 
   .dark {
@@ -38,17 +44,17 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 243 75% 59%;
+    --primary: 228 90% 61%;
     --primary-foreground: 210 40% 98%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-    --accent: 262 83% 58%;
+    --accent: 230 75% 44%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 243 75% 59%;
+    --ring: 228 90% 61%;
   }
   
   body {
@@ -66,8 +72,8 @@
 @layer components {
   .stripe-card {
     @apply backdrop-blur-sm rounded-xl shadow-lg transition-all duration-300;
-    @apply dark:bg-slate-800/50 dark:border dark:border-slate-700/50 dark:hover:border-indigo-500/30;
-    @apply bg-white/90 border border-slate-200 hover:border-indigo-500/30;
+    @apply dark:bg-slate-800/50 dark:border dark:border-slate-700/50 dark:hover:border-ultramarine-500/30;
+    @apply bg-white/90 border border-slate-200 hover:border-ultramarine-500/30;
   }
   
   .stripe-button {
@@ -75,13 +81,13 @@
   }
   
   .stripe-button-primary {
-    @apply stripe-button bg-indigo-600 hover:bg-indigo-500 text-white;
+    @apply stripe-button bg-ultramarine-600 hover:bg-ultramarine-500 text-white;
   }
   
   .stripe-button-outline {
     @apply stripe-button;
-    @apply dark:border dark:border-slate-700 dark:hover:border-indigo-500/50 dark:hover:bg-slate-800/50;
-    @apply border border-slate-300 hover:border-indigo-500/50 hover:bg-slate-100/80;
+    @apply dark:border dark:border-slate-700 dark:hover:border-ultramarine-500/50 dark:hover:bg-slate-800/50;
+    @apply border border-slate-300 hover:border-ultramarine-500/50 hover:bg-slate-100/80;
   }
   
   .stripe-gradient-text {
@@ -105,7 +111,7 @@
 }
 
 ::selection {
-  @apply bg-indigo-500/20 text-indigo-400;
+  @apply bg-ultramarine-500/20 text-ultramarine-400;
 }
 
 /* Theme transition styles */

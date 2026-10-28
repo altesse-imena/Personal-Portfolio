@@ -12,7 +12,7 @@ const Hero = () => {
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <AnimatedCodeBackground />
         {/* Single subtle gradient overlay */}
-        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-indigo-500/3 to-transparent dark:from-indigo-500/5" />
+        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-ultramarine-500/3 to-transparent dark:from-ultramarine-500/5" />
       </div>
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -35,7 +35,7 @@ const Hero = () => {
                 href="/resume.pdf" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm group"
+                className="px-4 py-2 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 bg-ultramarine-600 hover:bg-ultramarine-500 text-white text-sm group"
               >
                 <DownloadIcon className="w-4 h-4" />
                 Resume
@@ -55,7 +55,7 @@ const Hero = () => {
           >
             <a 
               href="#projects" 
-              className="px-6 py-3 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white group"
+              className="px-6 py-3 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 bg-ultramarine-600 hover:bg-ultramarine-500 text-white group"
             >
               View My Projects
               <ArrowRightIcon className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -66,7 +66,7 @@ const Hero = () => {
                 href="https://www.linkedin.com/in/altesseimena" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="py-2 px-3 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 border border-slate-300 hover:border-indigo-500/50 hover:bg-slate-100/80 dark:border-slate-700 dark:hover:border-indigo-500/50 dark:hover:bg-slate-800/50"
+                className="py-2 px-3 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 border border-slate-300 hover:border-ultramarine-500/50 hover:bg-slate-100/80 dark:border-slate-700 dark:hover:border-ultramarine-500/50 dark:hover:bg-slate-800/50"
               >
                 <LinkedinIcon className="w-5 h-5" />
               </a>
@@ -75,7 +75,7 @@ const Hero = () => {
                 href="https://github.com/altesse-imena" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="py-2 px-3 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 border border-slate-300 hover:border-indigo-500/50 hover:bg-slate-100/80 dark:border-slate-700 dark:hover:border-indigo-500/50 dark:hover:bg-slate-800/50"
+                className="py-2 px-3 rounded-full font-medium transition-all duration-300 inline-flex items-center gap-2 border border-slate-300 hover:border-ultramarine-500/50 hover:bg-slate-100/80 dark:border-slate-700 dark:hover:border-ultramarine-500/50 dark:hover:bg-slate-800/50"
               >
                 <GithubIcon className="w-5 h-5" />
               </a>

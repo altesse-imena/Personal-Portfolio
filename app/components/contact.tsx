@@ -36,7 +36,7 @@ const Contact = () => {
         
         <motion.a
           href="mailto:imenaaltesse@gmail.com?subject=Portfolio%20Contact&body=Hello%20Altesse,%0A%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you%20about..."
-          className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+          className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-ultramarine-500 to-ultramarine-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -55,7 +55,7 @@ const Contact = () => {
         <div className="mt-4 relative">
           <button 
             onClick={copyToClipboard}
-            className="text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
+            className="text-sm text-slate-500 dark:text-slate-400 hover:text-ultramarine-500 dark:hover:text-ultramarine-400 transition-colors"
           >
             Or click here to copy my email address
           </button>

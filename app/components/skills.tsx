@@ -88,8 +88,8 @@ const Skills = () => {
   return (
     <section id="skills" className="stripe-section relative overflow-hidden">
       {/* Background gradient elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-b from-purple-500/5 to-transparent -z-10" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-indigo-500/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-b from-ultramarine-700/5 to-transparent -z-10" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-ultramarine-500/5 rounded-full blur-3xl -z-10" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -103,7 +103,7 @@ const Skills = () => {
               className="stripe-card p-8"
             >
               <div className="flex items-center mb-6">
-                <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg mr-4">
+                <div className="bg-gradient-to-br from-ultramarine-500 to-ultramarine-700 p-3 rounded-lg mr-4">
                   {category.icon}
                 </div>
                 <h3 className="text-2xl text-slate-800 dark:text-white">{category.title}</h3>
@@ -113,7 +113,7 @@ const Skills = () => {
                 {category.skills.map((skill, index) => (
                   <div
                     key={`${category.id}-${index}`}
-                    className="bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 px-4 py-2 rounded-full hover:border-indigo-500/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300"
+                    className="bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 px-4 py-2 rounded-full hover:border-ultramarine-500/50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300"
                   >
                     <span className="text-slate-700 dark:text-slate-300">{skill}</span>
                   </div>

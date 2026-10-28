@@ -17,7 +17,7 @@ const CollapsibleCard = ({ title, icon, children }: { title: string; icon: React
         aria-controls={contentId}
         className={`w-full flex items-center md:items-start text-left md:pointer-events-none ${isOpen ? 'mb-6' : 'mb-0'} md:mb-6`}
       >
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-500 p-3 rounded-lg mr-4">
+        <div className="bg-gradient-to-br from-ultramarine-500 to-ultramarine-700 p-3 rounded-lg mr-4">
           {icon}
         </div>
         <h3 className="text-2xl text-slate-800 dark:text-white flex-1">{title}</h3>
@@ -44,8 +44,8 @@ const About = () => {
   return (
     <section id="about" className="stripe-section relative">
       {/* Background gradient elements */}
-      <div className="absolute top-1/4 right-0 w-1/3 h-1/2 bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-1/4 w-1/4 h-1/4 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl -z-10" />
+      <div className="absolute top-1/4 right-0 w-1/3 h-1/2 bg-ultramarine-500/5 dark:bg-ultramarine-500/10 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 left-1/4 w-1/4 h-1/4 bg-ultramarine-700/5 dark:bg-ultramarine-700/10 rounded-full blur-3xl -z-10" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -58,7 +58,7 @@ const About = () => {
           {/* Headshot */}
           <div className="flex-shrink-0 lg:mt-1">
             <div className="relative">
-              <div className="w-40 h-40 md:w-44 md:h-44 overflow-hidden shadow-2xl ring-1 ring-indigo-500/20 dark:ring-indigo-400/20">
+              <div className="w-40 h-40 md:w-44 md:h-44 overflow-hidden shadow-2xl ring-1 ring-ultramarine-500/20 dark:ring-ultramarine-400/20">
                 <Image
                   src="/images/my-headshot.jpeg"
                   alt="Altesse Imena - Professional Headshot"
@@ -96,7 +96,7 @@ const About = () => {
               </svg>
             }
           >
-            <div className="pl-4 border-l border-indigo-500/30">
+            <div className="pl-4 border-l border-ultramarine-500/30">
               <div>
                 <h4 className="text-xl text-slate-800 dark:text-white mb-2">Southern Alberta Institute of Technology</h4>
                 <p className="text-slate-600 dark:text-slate-300 mb-1">Bachelor of Technology – Software Development</p>
@@ -113,7 +113,7 @@ const About = () => {
               </svg>
             }
           >
-            <div className="pl-4 border-l border-indigo-500/30 space-y-8">
+            <div className="pl-4 border-l border-ultramarine-500/30 space-y-8">
               <div>
                 <h4 className="text-xl text-slate-800 dark:text-white mb-2">Founder & Engineer — Pulse</h4>
                 <p className="text-slate-600 dark:text-slate-300 mb-1">An AI-powered desktop assistant startup aiming to reinvent the OS interface through natural language interaction</p>
@@ -121,19 +121,19 @@ const About = () => {
                 
                 <ul className="space-y-2 text-slate-500 dark:text-slate-400">
                   <li className="flex items-start">
-                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span className="text-ultramarine-600 dark:text-ultramarine-400 mr-2">•</span>
                     <span>Built a cross-platform desktop app using Electron and Node.js with a streaming LLM interface powered by OpenAI and Anthropic APIs</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span className="text-ultramarine-600 dark:text-ultramarine-400 mr-2">•</span>
                     <span>Engineered native OS integrations including command execution, app launching, and file management via a conversational UI</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span className="text-ultramarine-600 dark:text-ultramarine-400 mr-2">•</span>
                     <span>Implemented Supabase Auth for user management and a Vercel-hosted backend with real-time response streaming</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span className="text-ultramarine-600 dark:text-ultramarine-400 mr-2">•</span>
                     <span>Designed screenshot and voice input pipelines for multimodal interaction across macOS and Windows</span>
                   </li>
                 </ul>
@@ -147,15 +147,15 @@ const About = () => {
                 
                 <ul className="space-y-2 text-slate-500 dark:text-slate-400">
                   <li className="flex items-start">
-                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span className="text-ultramarine-600 dark:text-ultramarine-400 mr-2">•</span>
                     <span>Built scalable FastAPI and PostgreSQL backends for real-time querying across 1,000+ listings</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span className="text-ultramarine-600 dark:text-ultramarine-400 mr-2">•</span>
                     <span>Integrated external data sources (Zillow, CoStar) and engineered filtering tools for investment insights</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-indigo-600 dark:text-indigo-400 mr-2">•</span>
+                    <span className="text-ultramarine-600 dark:text-ultramarine-400 mr-2">•</span>
                     <span>Led front-end development in React, improving data analysis efficiency by 50%</span>
                   </li>
                 </ul>

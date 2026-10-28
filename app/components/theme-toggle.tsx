@@ -12,7 +12,7 @@ export function ThemeToggle() {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="py-2 px-3 text-sm flex items-center gap-2 rounded-full font-medium transition-all duration-300 border border-slate-300 hover:border-indigo-500/50 hover:bg-slate-100/80 dark:border-slate-700 dark:hover:border-indigo-500/50 dark:hover:bg-slate-800/50"
+      className="py-2 px-3 text-sm flex items-center gap-2 rounded-full font-medium transition-all duration-300 border border-slate-300 hover:border-ultramarine-500/50 hover:bg-slate-100/80 dark:border-slate-700 dark:hover:border-ultramarine-500/50 dark:hover:bg-slate-800/50"
       aria-label="Toggle theme"
     >
       {theme === "light" ? (

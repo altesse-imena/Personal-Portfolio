@@ -32,6 +32,20 @@ module.exports = {
           200: '#C7D2FE',
           100: '#E0E7FF',
         },
+        // Brand accent, built around ultramarine blue (#4166F5)
+        ultramarine: {
+          50: '#F0F3FF',
+          100: '#DDE3FE',
+          200: '#BAC8FC',
+          300: '#8FA4FA',
+          400: '#6985F7',
+          500: '#4166F5',
+          600: '#2548E4',
+          700: '#1C38C4',
+          800: '#1A2E9E',
+          900: '#152379',
+          950: '#0E1553',
+        },
         purple: {
           600: '#7C3AED',
           500: '#8B5CF6',

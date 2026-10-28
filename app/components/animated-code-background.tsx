@@ -62,7 +62,7 @@ const AnimatedCodeBackground = () => {
       {codeLines.map((line) => (
         <motion.div
           key={line.id}
-          className="absolute font-mono text-xs md:text-sm text-indigo-500/60 dark:text-indigo-400/50 whitespace-nowrap"
+          className="absolute font-mono text-xs md:text-sm text-ultramarine-500/60 dark:text-ultramarine-400/50 whitespace-nowrap"
           style={{
             left: `${line.x}%`,
             top: `${line.y}%`,
@@ -92,7 +92,7 @@ const AnimatedCodeBackground = () => {
       {['{', '}', '(', ')', ';', '=', '>', '<', '/', '*'].map((symbol, i) => (
         <motion.div
           key={`symbol-${i}`}
-          className="absolute font-mono text-lg text-indigo-500/40 dark:text-indigo-400/35"
+          className="absolute font-mono text-lg text-ultramarine-500/40 dark:text-ultramarine-400/35"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
