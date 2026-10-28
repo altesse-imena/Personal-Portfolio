@@ -32,6 +32,18 @@ const nextConfig = {
   
   // Enable static exports where possible
   output: 'standalone',
+
+  // Send the old Vercel address to the custom domain so search engines index one site
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'altesse-imena.vercel.app' }],
+        destination: 'https://altesseimena.com/:path*',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

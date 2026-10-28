@@ -22,7 +22,7 @@ const jost = Jost({
 })
 
 export const metadata = {
-  metadataBase: new URL('https://altesse-imena.vercel.app'),
+  metadataBase: new URL('https://altesseimena.com'),
   title: {
     default: "Altesse Imena - Software Developer Portfolio",
     template: "%s | Altesse Imena"
@@ -46,7 +46,7 @@ export const metadata = {
     "frontend developer",
     "backend developer"
   ],
-  authors: [{ name: "Altesse Imena", url: "https://altesse-imena.vercel.app" }],
+  authors: [{ name: "Altesse Imena", url: "https://altesseimena.com" }],
   creator: "Altesse Imena",
   publisher: "Altesse Imena",
   robots: {
@@ -61,13 +61,13 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: "https://altesse-imena.vercel.app",
+    canonical: "https://altesseimena.com",
   },
   openGraph: {
     type: "website",
     title: "Altesse Imena - Portfolio",
     description: "Personal portfolio of Altesse Imena, a software developer specializing in web applications and interactive experiences",
-    url: "https://altesse-imena.vercel.app",
+    url: "https://altesseimena.com",
     siteName: "Altesse Imena Portfolio",
     images: [
       {

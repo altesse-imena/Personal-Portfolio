@@ -3,16 +3,20 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Altesse Imena",
+    "givenName": "Altesse",
+    "familyName": "Imena",
+    "alternateName": ["Altesse", "altesseimena"],
+    "image": "https://altesseimena.com/images/my-headshot.jpeg",
     "jobTitle": "Software Engineer",
     "description": "Passionate software developer specializing in web applications and interactive experiences",
-    "url": "https://altesse-imena.vercel.app",
+    "url": "https://altesseimena.com",
     "sameAs": [
       "https://www.linkedin.com/in/altesseimena",
       "https://github.com/altesse-imena"
     ],
     "worksFor": {
       "@type": "Organization",
-      "name": "Avenue Living Residential"
+      "name": "Pulse"
     },
     "alumniOf": {
       "@type": "EducationalOrganization",
@@ -33,7 +37,7 @@ export default function StructuredData() {
     ],
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://altesse-imena.vercel.app"
+      "@id": "https://altesseimena.com"
     }
   }
 
