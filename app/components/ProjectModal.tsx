@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 interface ProjectModalProps {
   project: any;
@@ -25,9 +26,21 @@ const ProjectModal = memo(({ project, isOpen, onClose }: ProjectModalProps) => {
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           >
-            {/* Modal Header with Project Icon */}
+            {/* Modal Header: site preview when the project has one, otherwise its icon */}
             <div className="relative w-full h-64 sm:h-80 md:h-96 bg-slate-200 dark:bg-slate-800 overflow-hidden">
-              {/* Project Icon Display */}
+              {project.image && !project.image.includes('placeholder') ? (
+                <>
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 896px) 100vw, 896px"
+                  />
+                  {/* Darken the bottom so the title stays readable */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent z-10" />
+                </>
+              ) : (
               <div className={`w-full h-full bg-gradient-to-br ${project.bgColor} flex items-center justify-center relative overflow-hidden`}>
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
@@ -42,7 +55,8 @@ const ProjectModal = memo(({ project, isOpen, onClose }: ProjectModalProps) => {
                   <span className="text-white/80 text-xs font-medium">{project.category}</span>
                 </div>
               </div>
-              
+              )}
+
               {/* Close Button */}
               <button 
                 className="absolute top-4 right-4 z-20 bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/40 transition-colors"
