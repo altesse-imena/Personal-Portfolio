@@ -59,21 +59,21 @@ const projects = [
       </svg>
     ),
     title: "AgentCollab: Multi-Agent Coding Assistant",
-    description: "Production-grade multi-agent system where specialized AI agents collaborate on software development tasks. Features code generation, review, testing, and security analysis with LangGraph orchestration.",
-    image: "/images/placeholder-multi-agent.jpg",
-    images: ["/images/placeholder-multi-agent.jpg"],
+    description: "Four AI agents write, review, test and security-check a code change together, looping on feedback until it passes. Orchestrated with LangGraph, with a live demo that replays real runs.",
+    image: "/images/agentcollab-preview.jpg",
+    images: ["/images/agentcollab-preview.jpg"],
     bgColor: "from-emerald-600 to-cyan-600",
     category: "AI/ML",
-    technologies: ["Python", "LangGraph", "OpenAI API", "FastAPI", "React", "PostgreSQL", "Docker", "GitHub API"],
-    demoUrl: "#",
-    githubUrl: "#",
+    technologies: ["Python", "LangGraph", "FastAPI", "React", "TypeScript", "Docker", "SQLAlchemy", "LLM APIs"],
+    demoUrl: "https://agentcollab.onrender.com",
+    githubUrl: "https://github.com/altesse-imena/AgentCollab",
     details: [
-      "Architected multi-agent system with specialized roles: CodeWriter, CodeReviewer, TestGenerator, and SecurityAnalyzer agents",
-      "Implemented LangGraph workflow orchestration managing agent communication, shared state, and graceful failure handling",
-      "Built cost-optimization strategies for compound LLM call chains, reducing API costs by 40% through intelligent caching",
-      "Integrated GitHub API for automated issue resolution, demonstrating real-world problem-solving capabilities",
-      "Developed production-grade error handling and recovery mechanisms for agent coordination failures",
-      "Created intuitive web interface showing agent collaboration in real-time with detailed workflow visualization"
+      "Orchestrated four specialized agents (writer, reviewer, tester and security analyst) as a LangGraph workflow, with the three inspectors running in parallel on every draft",
+      "Ran generated tests in a locked-down Docker sandbox (no network, read-only filesystem, capped CPU and memory), feeding every failure back to the writer for the next round",
+      "Built a provider-agnostic model layer for OpenAI, Anthropic and any OpenAI-compatible API, with retries that respect rate-limit hints, JSON repair, per-run budgets and per-call cost tracking",
+      "Added cost controls (cache-friendly prompt ordering, an optional response cache, cheaper models for review roles) and a 20-task benchmark graded by hidden tests the agents never see",
+      "Built a GitHub App that turns a labeled issue into a draft pull request once the change passes",
+      "Designed an interactive demo that replays recorded runs as an animated agent stage or a scrolling case study"
     ]
   },
   {
