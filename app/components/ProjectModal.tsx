@@ -153,4 +153,6 @@ const ProjectModal = memo(({ project, isOpen, onClose }: ProjectModalProps) => {
   );
 });
 
+ProjectModal.displayName = "ProjectModal";
+
 export default ProjectModal;

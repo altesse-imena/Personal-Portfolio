@@ -30,7 +30,7 @@ const Contact = () => {
         <h2 className="text-4xl mb-8 text-center">Contact Me</h2>
         
         <p className="text-slate-600 dark:text-slate-300 mb-10">
-          Feel free to reach out to me via email. I'm always open to discussing new projects, 
+          Feel free to reach out to me via email. I&apos;m always open to discussing new projects, 
           creative ideas, or opportunities to be part of your vision.
         </p>
         
