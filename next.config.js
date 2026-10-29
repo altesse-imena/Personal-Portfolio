@@ -22,7 +22,6 @@ const nextConfig = {
   },
   
   // Performance optimizations
-  swcMinify: true,
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
